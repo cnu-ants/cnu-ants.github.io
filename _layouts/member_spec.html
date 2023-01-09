@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+
+<section>
+    <div class="section-title">
+        <h2><span>{{ page.name}}</span></h2>
+    </div>
+
+    <div class="article-post">
+      <div class="mem-desc">
+        {% if page.image %}
+        <img src="{{site.baseurl}}/{{ page.image }}"/>
+        {% else %}
+        <img src="{{site.baseurl}}/assets/images/avatar.png"/>
+        {% endif %}
+        <div>
+          <h4>{{ page.name }}</h4>
+          {% if page.position-display %}
+            <h5>{{ page.position-display }}</h5>
+          {% else %}
+            <h5>{{ page.position }}</h5>
+          {% endif %}
+          {% if page.affiliation %}
+            <h5>{{ page.affiliation }}</h5>
+          {% else %}
+            <h5>Chungnam National University</h5>
+          {% endif %}
+          {% if page.email %}
+            <span> Email: {{ page.email }}</span><br>
+          {% endif %}
+          {% if page.phone %}
+            <span> Phone: {{ page.phone }}</span><br>
+          {% endif %}
+          {% if page.office %}
+            <span> Office: {{ page.office }}</span><br>
+          {% endif %}
+        </div>
+      </div><br>
+      <div class="mem-info">
+        <div class="info-title">
+          Education
+        </div>
+      </div>
+
+    </div>
+
+    {% if page.comments == true %}
+
+    <div id="comments" class="row mb-5">
+        <div class="col-md-8">
+            {% include disqus.html %}
+        </div>
+    </div>
+
+    {% endif %}
+</section>

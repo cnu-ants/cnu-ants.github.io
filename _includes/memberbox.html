@@ -1,0 +1,24 @@
+<!-- begin post -->
+<a href="{{ site.baseurl }}{{ member.url}}" style="color:black;">
+<div class="profile-card">
+  <div class="profile-card-text">
+    {% if member.image %}
+      <img class="profile-portada" src="{{ site.baseurl }}/{{ member.image }}">
+    {% else %}
+      <img class="profile-portada" src="{{ site.baseurl }}/assets/images/avatar.png">
+    {% endif %}
+    <div class="profile-title-total">
+      <h4> {{ member.name }} </h4>
+      <div class="profile-title">
+        {% if member.position-display -%}
+          {{ member.position-display }}
+        {% else -%}
+          {{ member.position }}
+        {% endif -%}
+      </div>
+  <div class="profile-actions">
+    <button><i class="far fa-envelope"></i></button> <div class="profile-title"> {{ member.email }} </div>
+  </div></div>
+  </div>
+</div>
+</a>
