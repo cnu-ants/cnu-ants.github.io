@@ -9,6 +9,7 @@ position: Undergraduate
 affiliation: Chungnam National University
 position-display: B.S. Student
 permalink: /members/subink
+image: assets/images/subink.png
 startdate: 202206
 office: "W2 #502"
 ---
