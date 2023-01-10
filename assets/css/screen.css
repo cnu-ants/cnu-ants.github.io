@@ -5,8 +5,13 @@ License: https://www.wowthemes.net/freebies-license/
 */
 @media screen and (min-width:1500px) {
     html { font-size:18px; } /* Increase the font size on higher resolutions */
-    .container {max-width:60%;}
+   
+    .main-content .container {
+      max-width:80%;
+    }
 }
+
+
 .mainheading {
     padding: 1rem 0rem;
 }
@@ -165,7 +170,7 @@ img {
 
 .listfeaturedtag h2.card-title,
 .listrecent h2.card-title {
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     font-weight: 700;
     line-height: 1.25;
 }
@@ -329,11 +334,14 @@ span.post-read-more a:hover {
 
 .mainheading h1.sitetitle {
     font-family: Righteous;
+    font-size: 40px;
 }
 
 .mainheading h1.posttitle {
     font-weight: 700;
+    font-size: 35px;
     margin-bottom: 1rem;
+    text-align:justify;
 }
 
 .footer {
@@ -356,6 +364,7 @@ span.post-read-more a:hover {
     font-family: Merriweather;
     font-size: 1.1rem;
     line-height: 1.84;
+    text-align:justify;
     color: rgba(0, 0, 0, .8);
 }
 
@@ -869,6 +878,7 @@ iframe {
 
 .card .img-fluid {
     width: 100%;
+    height:200px;
 }
 
 .sticky-top-80 {
@@ -967,10 +977,11 @@ iframe {
 .profile-card-text {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  height: 100%;
 }
 
 .profile-title-total {
-  padding: 2.5em 1.5em 1.5em 1.5em;
+  padding: 2.0em 1.5em 2.0em 0.5em;
 }
 
 path {
@@ -981,6 +992,20 @@ path {
   width: 100%;
 }
 
+@media screen and (min-width:1500px) {
+  .profile-img {
+    width: 150px;
+    height: 86%;
+  }
+}
+
+@media screen and (max-width:1500px) {
+  .profile-img {
+    width: 150px;
+    height: 93.2%;
+  }
+}
+
 .profile-portada {
   width: 100%;
   height: 100%;
@@ -988,6 +1013,7 @@ path {
   border-bottom-left-radius: 20px;
   background-position: bottom center;
   background-size: cover;
+  object-fit: cover;
 }
 
 button {

@@ -2,11 +2,13 @@
 <a href="{{ site.baseurl }}{{ member.url}}" style="color:black;">
 <div class="profile-card">
   <div class="profile-card-text">
+    <div class="profile-img">
     {% if member.image %}
       <img class="profile-portada" src="{{ site.baseurl }}/{{ member.image }}">
     {% else %}
       <img class="profile-portada" src="{{ site.baseurl }}/assets/images/avatar.png">
     {% endif %}
+    </div>
     <div class="profile-title-total">
       <h4> {{ member.name }} </h4>
       <div class="profile-title">

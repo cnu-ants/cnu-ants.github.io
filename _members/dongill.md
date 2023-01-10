@@ -10,6 +10,7 @@ name_kor: 이동일
 email: vfturtle@gmail.com
 # TODO: Upload your image and write the path (200px X 300px is recommended)
 # (e.g.) image: assets/images/sunghol.png
+image: assets/images/dongill.jpg
 # TODO: Choose one - Graduate or Undergraduate
 position: Graduate
 # TODO: Write your affiliation (most cases, Chungnam National University)
