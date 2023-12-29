@@ -109,6 +109,7 @@ comments: false
     {{ p.year }}
   {% endif %}
   {% if p.award %} <b><i>{{ p.award }} </i></b> {% endif %}
+  {% if p.remark %} <b><i>({{ p.remark}})</i></b> {% endif %}
   </li>
 {% endfor %}
 </ul>
