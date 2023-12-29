@@ -3,6 +3,8 @@ labname: "Software Analysis & Testing"
 name: "Software Analysis & Testing Research Group"
 title: "Software Analysis & Testing Research Group"
 logo: 'assets/images/logo-no-background.png'
+ants-character: 'assets/images/ants.png'
+ants-img: 'assets/images/ants_square.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: ''
 google_analytics: 'UA-46278016-1'
