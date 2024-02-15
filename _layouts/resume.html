@@ -119,6 +119,7 @@ layout: default_wo_title
     </div><!--//sidebar-wrapper-->
     
     <div class="main-wrapper">
+      {% if page.introduction %}
         <section class="section summary-section">
             <h2 class="section-title"><span class="icon-holder">
                 <svg class="svg-inline--fa fa-user fa-w-14" aria-hidden="true"
@@ -132,9 +133,10 @@ layout: default_wo_title
             48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
                 </span>Career Profile</h2>
             <div class="profile-summary">
-              <p>{{ content }}</p>
+              <p>{{ page.introduction }}</p>
             </div><!--//summary-->
         </section><!--//section-->
+        {% endif %}
 
         {% if page.exps %}
         <section class="section experiences-section">
@@ -372,7 +374,7 @@ layout: default_wo_title
               {% endif %}
               {% assign papers_str = papers_str | append: p.year %}
               {% if p.award %} 
-                {% assign papers_str = papers_str | append: "<b><i>" | append: p.award | append: "</i></b>" %}
+                {% assign papers_str = papers_str | append: " <b><i>" | append: p.award | append: "</i></b>" %}
               {% endif %}
               {% endif %}
           {% endfor %}
