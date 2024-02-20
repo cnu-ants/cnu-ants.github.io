@@ -6,6 +6,7 @@ comments: true
 ---
 
 {% assign members = site.members | where: "visible", "true" %}
+{% assign gradmembers = site.members | where: "visible", "false" %}
 
 <section class="featured-posts">
     <div class="section-title">
@@ -59,3 +60,39 @@ comments: true
     {% endfor %}
     </div>
 </section>
+
+<!--
+TODO(sunghol): Add alumni
+<section class="featured-posts">
+    <div class="section-title">
+        <h2><span>Alumni</span></h2>
+    </div>
+    
+    <div style="float:none;overflow:hidden">
+    <table  style="font: 1.0em 'Fira Sans', sans-serif;">
+    {% assign members = gradmembers | sort: "startdate" %}
+    {% for member in gradmembers %}
+      {% assign position = member.position | downcase -%}
+      {% if position == "graduate" %}
+        {% capture full %}
+        {% endcapture %}
+        <tr>
+        <td> {{ member.name }} &nbsp;(
+        {% if member.position-display == "M.S. Student" %}
+            MS, 
+        {% elsif member.position-display == "Ph.D. Student" %}
+            PhD,
+        {% endif %}
+        {{ member.gradyear }}
+        )</td>
+        {% if member.job %}
+            <td> {{ member.job }} &nbsp;</td>
+        {% endif %}
+        <td> {{ member.email }} </td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+    </table>
+    </div>
+</section>
+-->

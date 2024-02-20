@@ -26,17 +26,28 @@ awards: [
 [NAVER, Ph.D. Fellowship Award, 2017],
 [KIISE, Honorable Mention in the 33th Research Paper Competition, 2014],
 ]
+academic-services: [
+[ISSTA, Program Committee Member in Technical-track, 2024],
+[TOSEM, Reviewer, 2024],
+[TSE, Reviewer, 2023],
+[TSE, Reviewer, 2022],
+[TOSEM, Reviewer, 2022],
+[OOPSLA, Committee Member in Artifact Evaluation, 2019],
+[OOPSLA, Committee Member in Artifact Evaluation, 2018],
+[PLDI, Committee Member in Artifact Evaluation, 2018],
+]
 visible: true
 pub_visible: false
+introduction: "I'm an Assistant Professor in the Department of Computer
+Science and Engineering at Chungnam National University. I earned my Ph.D. and
+M.S in School of Computing at KAIST, and B.S from Ajou University. After
+graduating from KAIST, I worked at Google as a visiting faculty researcher for
+6 months.  My research interest is static analysis for Android applications to
+detect bugs and security vulnerabilities in the apps. Especially, I have
+researched static analysis techniques for multilingual Android applications
+(e.g. Hybrid applications, JNI applications) implemented in multiple
+languages."
 ---
 
-I'm an Assistant Professor in the Department of Computer Science and
-Engineering at Chungnam National University. I earned my Ph.D. and M.S in
-School of Computing at KAIST, and B.S from Ajou University. After graduating
-from KAIST, I worked at Google as a visiting faculty researcher for 6 months.
-My research interest is static analysis for Android applications to detect bugs
-and security vulnerabilities in the apps. Especially, I have researched static
-analysis techniques for multilingual Android applications (e.g. Hybrid
-applications, JNI applications) implemented in multiple languages.
 
 

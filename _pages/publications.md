@@ -10,7 +10,7 @@ comments: false
 {% assign all_members_eng = site.members | map: "name" | compact %}
 {% assign all_members_kor = site.members | map: "name_kor" | compact %}
 
-{% assign year = 2023 %}
+{% assign year = 2024 %}
 
 {% for i in range %}
   {% if year == 2019 %}
