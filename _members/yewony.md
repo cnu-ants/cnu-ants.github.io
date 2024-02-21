@@ -8,7 +8,7 @@ email: yongye1@etri.re.kr
 position: Graduate
 gradyear: 2024
 affiliation: Chungnam National University
-position-display: M.S. Student
+position-display: M.S.
 permalink: /members/yewony
 image: assets/images/yewony.jpg
 startdate: 202203

@@ -1,77 +1,15 @@
 ---
-layout: default
-title: Home
+layout: main
+title: maincontent
 carousels:
   - images:
     - image: /assets/images/ants.png
     - image: /assets/images/ants_square.png
 ---
 
-{% if page.url == "/" %}
-
-<p class="lead" style='text-align:justify'>
-{{ site.labname }} research group in Chungnam National University focuses on
-programming languages, program analysis and testing, program verification, and
-security. The research topics include, but are not limited to: <!-- is not limited, but especially, we are actively
-studying static and dyamic program analysis techqniues that automatically
-detect bugs and security vulnerabilities in real-world programs, such as binary
-executables, Android apps, and ML code. -->
-<ul>
-  <li> <i>Program Analysis</i>: Devise novel analysis techniques to extract
-    valuable semantic properties as well as detect bugs and security
-    vulnerabilities from real-world programs.</li>
-  <li> <i>Testing</i>: Auto-generate test cases efficient to expose faults from
-    programs, and localize root causes of the faults. </li>
-  <li> <i>Binaries</i>: Analyze binary executables to detect hidden malicious
-    behaviors in them, and to lift them to a more understandable format. </li>
-  <li> <i>Mobile applications and ML code </i>: Analyze mobile applications and
-    ML code to detect bugs and privacy issues, which make them safe and
-    dependable.
-  </li>
-</ul>
-</p>
-<p class="lead" style='text-align:justify'>
-  <b> We are recruiting motivated undergraduate, graduate students and
-    postdoctoral researchers!</b>
-  If you are interested in our research and laboratory, please contact <a href
-    = "mailto: eshaj@cnu.ac.kr"> Sungho Lee</a>.
-</p>
-
-<!-- {% include carousel.html width="10" height="10" unit="%" duration="7" number="1" %} -->
-
-<p class="lead" style='text-align:justify; font-size:20px'>
-  <b> 열정있는 학부, 석사, 박사과정 및 연구원을 모집합니다 : </b> 우리는
-  프로그래밍 언어 이론에 기반한 프로그램 분석 및 테스팅 기법을 연구하고
-  있습니다. 이러한 기법을 통해 실생활에 널리 사용되는 프로그램에서 결함 및 보안
-  취약점을 자동으로 검출하여, 위험하고 취약한 소프트웨어를 사전에 탐지하며
-  안전하고 믿을수 있는 소프트웨어 개발을 지원합니다.  관심있는 분들의 많은 <b><a
-  href = "mailto:eshaj@cnu.ac.kr">지원</a></b> 바랍니다.
-</p> 
-<!-- Featured
-================================================== -->
-{% comment %}
-<section class="featured-posts">
-    <div class="section-title">
-        <h2><span>News</span></h2>
-    </div>
-    <div class="row">
-    {% for post in site.posts %}
-
-        {% if post.featured == true %}
-
-            {% include featuredbox.html %}
-
-        {% endif %}
-
-    {% endfor %}
-
-    </div>
-</section>
-{% endcomment %}
-{% endif %} 
-
 <!-- Posts Index
 ================================================== -->
+<div>
 <section class="recent-posts">
 
     <div class="section-title">
@@ -91,6 +29,7 @@ executables, Android apps, and ML code. -->
     </div>
 
 </section>
+</div>
 
 {% comment %}
 <section class="featured-posts">

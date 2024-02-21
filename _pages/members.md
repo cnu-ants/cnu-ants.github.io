@@ -61,38 +61,36 @@ comments: true
     </div>
 </section>
 
-<!--
-TODO(sunghol): Add alumni
 <section class="featured-posts">
     <div class="section-title">
         <h2><span>Alumni</span></h2>
     </div>
     
     <div style="float:none;overflow:hidden">
-    <table  style="font: 1.0em 'Fira Sans', sans-serif;">
+    <ul style="font: 1.0em 'Fira Sans', sans-serif;">
     {% assign members = gradmembers | sort: "startdate" %}
     {% for member in gradmembers %}
       {% assign position = member.position | downcase -%}
       {% if position == "graduate" %}
         {% capture full %}
         {% endcapture %}
-        <tr>
-        <td> {{ member.name }} &nbsp;(
-        {% if member.position-display == "M.S. Student" %}
+        <li>
+        <a href="{{ site.baseurl }}{{ member.url}}">{{ member.name }}</a>
+        &nbsp;(
+        {%- if member.position-display == "M.S." -%}
             MS, 
-        {% elsif member.position-display == "Ph.D. Student" %}
+        {%- elsif member.position-display == "Ph.D." -%}
             PhD,
         {% endif %}
-        {{ member.gradyear }}
-        )</td>
+        {{- member.gradyear -}} 
+        )&nbsp;
         {% if member.job %}
-            <td> {{ member.job }} &nbsp;</td>
+            {{ member.job }} &nbsp;
         {% endif %}
-        <td> {{ member.email }} </td>
-        </tr>
+        <a href="mailto:{{ member.email }}">{{ member.email }}</a> 
+        </li>
       {% endif %}
     {% endfor %}
-    </table>
+    </ul>
     </div>
 </section>
--->

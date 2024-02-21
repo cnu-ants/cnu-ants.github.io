@@ -64,9 +64,16 @@ ga('send', 'pageview');
         <!-- Begin Menu -->
 
             <ul class="navbar-nav ml-auto">
-
+                {% assign url_size = page.url | size %}
                 {% if page.url == "/" %}
                 <li class="nav-item active">
+                {% elsif url_size > 5 %}
+                  {% assign url = page.url | slice: 0, 5 %}
+                  {% if url == "/page" %}
+                    <li class="nav-item active">
+                  {% else %}
+                    <li class="nav-item">
+                  {% endif %}
                 {% else %}
                 <li class="nav-item">
                 {% endif %}
