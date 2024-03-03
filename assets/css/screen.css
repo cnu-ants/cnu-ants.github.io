@@ -1007,14 +1007,14 @@ path {
 @media screen and (min-width:1500px) {
   .profile-img {
     width: 150px;
-    height: 86%;
+    height: 200px;
   }
 }
 
 @media screen and (max-width:1500px) {
   .profile-img {
     width: 150px;
-    height: 93.2%;
+    height: 200px;
   }
 }
 
