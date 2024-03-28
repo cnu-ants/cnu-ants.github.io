@@ -1,5 +1,5 @@
 ---
-visible: true
+visible: false
 pub_visible: true
 layout: resume
 name: Seongyu Kim
