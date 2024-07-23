@@ -4,4 +4,5 @@ authors: [정민경, 이성호]
 venue: 정보과학회(KCC) 학부생논문
 year: 2024
 month: 6
+award: 학부생부문 최우수상
 ---
