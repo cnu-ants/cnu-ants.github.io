@@ -7,7 +7,7 @@ comments: false
 
 <section>
     <div class="section-title">
-        <h2><span> 2023 Fall</span></h2>
+        <h2><span> 2024 Fall</span></h2>
     </div>
 
     <div class="article-post">
