@@ -7,6 +7,19 @@ comments: false
 
 <section>
     <div class="section-title">
+        <h2><span> 2023 Fall</span></h2>
+    </div>
+
+    <div class="article-post">
+    <ul>
+      <li> Software Analysis </li>
+      <li> Object-Oriented Design </li>
+</ul>
+</div>
+</section>
+
+<section>
+    <div class="section-title">
         <h2><span> 2024 Spring</span></h2>
     </div>
 
