@@ -7,7 +7,7 @@ name_kor: 백소연
 email: sy.baek28@gmail.com
 position: Graduate
 affiliation: Chungnam National University
-position-display: M.S. Student
+position-display: Integrated MS & Ph.D. student
 image: assets/images/soyeonb.jpg
 permalink: /members/soyeonb
 startdate: 202303

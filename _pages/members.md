@@ -35,10 +35,22 @@ comments: true
       {% if position == "ph.d. student" %}
         {% include memberbox.html %}
       {% endif %}
+      {% if position == "integrated ms & ph.d. student" %}
+        {% include memberbox.html %}
+      {% endif %}
     {% endfor %}
     {% for member in members %}
       {% assign position = member.position-display | downcase -%}
       {% if position == "m.s. student" %}
+        {% include memberbox.html %}
+      {% endif %}
+    {% endfor %}
+    {% for member in members %}
+      {% assign position = member.position-display | downcase -%}
+      {% if position == "ph.d. student (part)" %}
+        {% include memberbox.html %}
+      {% endif %}
+      {% if position == "m.s. student (part)" %}
         {% include memberbox.html %}
       {% endif %}
     {% endfor %}

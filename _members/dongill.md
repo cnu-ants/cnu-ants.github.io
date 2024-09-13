@@ -16,7 +16,7 @@ position: Graduate
 # TODO: Write your affiliation (most cases, Chungnam National University)
 affiliation: Chungnam National University
 # TODO: Choose one - B.S. or M.S. or Ph.D. Student
-position-display: Ph.d. Student
+position-display: Ph.d. Student (part)
 # TODO: Write /members/[your id] (e.g. /members/sunghol)
 permalink: /members/dongill
 # TODO: Write your start date in our lab
