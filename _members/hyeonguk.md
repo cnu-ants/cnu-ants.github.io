@@ -9,7 +9,7 @@ position: Undergraduate
 affiliation: Chungnam National University
 position-display: B.S. Student
 permalink: /members/hyeonguk
-#image: assets/images/hyeonguk.jpg
+image: assets/images/hyeonguk.jpg
 startdate: 202405
 office: "W2 #502"
 ---
