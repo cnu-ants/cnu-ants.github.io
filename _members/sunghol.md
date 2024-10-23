@@ -27,13 +27,10 @@ awards: [
 [KIISE, Honorable Mention in the 33th Research Paper Competition, 2014],
 ]
 academic-services: [
-[ISSTA, Program Committee Member in Technical-track, 2024],
-[TOSEM, Reviewer, 2024],
-[TSE, Reviewer, 2023],
-[TSE, Reviewer, 2022],
-[TOSEM, Reviewer, 2022],
-[OOPSLA, Committee Member in Artifact Evaluation, 2019],
-[OOPSLA, Committee Member in Artifact Evaluation, 2018],
+[ISSTA, Program Committee Member in Technical-track, 2024, 2025],
+[TOSEM, Reviewer, 2022, 2024],
+[TSE, Reviewer, 2022 - 2024],
+[OOPSLA, Committee Member in Artifact Evaluation, 2018, 2019],
 [PLDI, Committee Member in Artifact Evaluation, 2018],
 ]
 visible: true

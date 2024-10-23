@@ -400,11 +400,46 @@ layout: default_wo_title
                 <div class="meta">
                     <div class="upper-row">
                       <h3 class="job-title"> {{ award[1] }} </h3>
-                      <div class="time"> {{ award[2] }}</div>
+                      <div class="time"> {{ award[2] }} </div>
                     </div><!--//upper-row-->
                     <div class="company"> {{ award[0] }}</div>
                 </div><!--//meta-->
                 {% if award[3] %}
+                <div class="details">
+                  <p>{{ award[3] }}</p>
+                </div><!--//details-->
+                {% endif %}
+            </div><!--//item-->
+            {% endfor %}
+        </section><!--//section-->
+        {% endif %}
+
+        {% if page.academic-services %}
+        <section class="section experiences-section">
+            <h2 class="section-title"><span class="icon-holder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 900 900">
+          <path
+          d="M48 0C21.5 0 0 21.5 0 48v64c0 8.8 7.2 16 16 16h80V48C96 21.5 74.5
+          0 48 0zm208 412.6V352h288V96c0-52.9-43.1-96-96-96H111.6C121.7 13.4
+          128 29.9 128 48v368c0 38.9 34.7 69.7 74.8 63.1C234.2 474 256 444.5
+          256 412.6zM288 384v32c0 52.9-43.1 96-96 96h336c61.9 0 112-50.1
+          112-112 0-8.8-7.2-16-16-16H288z"/></svg>
+            </span>Academic Services</h2>
+            
+            {% for award in page.academic-services %}
+            <div class="item">
+                <div class="meta">
+                    <div class="upper-row">
+                      <h3 class="job-title"> {{ award[1] }} </h3>
+                      <div class="time"> 
+                        {% for time in award offset:2 %}
+                        {{ time }} 
+                        {% endfor %}
+                      </div>
+                    </div><!--//upper-row-->
+                    <div class="company"> {{ award[0] }}</div>
+                </div><!--//meta-->
+              <!-- {% if award[3] %}
                 <div class="details">
                   <p>{{ award[3] }}</p>
                 </div><!--//details-->
