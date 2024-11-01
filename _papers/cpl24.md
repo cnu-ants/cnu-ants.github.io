@@ -4,5 +4,4 @@ authors: [백소연, 이성호]
 venue: "정보과학회 컴퓨팅의 실제 논문지(KTCP)"
 year: 2024
 month: 10
-status: To appear
 ---
