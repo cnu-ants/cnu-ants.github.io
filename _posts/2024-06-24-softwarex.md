@@ -3,7 +3,7 @@ layout: post
 title:  "'CaLLi: OCaml Library for Static Analysis of LLVM bitcode' is accepted at SoftwareX!"
 author: sunghol
 tags: [ paper, research ]
-image: assets/images/softwarex24.pdf
+image: assets/images/softwarex24.png
 featured: true
 ---
 
