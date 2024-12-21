@@ -5,17 +5,18 @@ permalink: /publications
 comments: false
 ---
 
-{% assign range = (1..100) %}
+{% assign range = (1..6) %}
 
 {% assign all_members_eng = site.members | map: "name" | compact %}
 {% assign all_members_kor = site.members | map: "name_kor" | compact %}
 
 {% assign year = "now" | date: "%Y" %}
+{% assign year = year | plus: 1 %}
 
 {% for i in range %}
-  {% if year == 2019 %}
-    {% break %}
-  {% endif %}
+  <!-- {% if year == 2019 %} -->
+  <!--   {% break %} -->
+  <!-- {% endif %} -->
 
 {% assign papers = site.papers | where: "year", year | sort: "month" | reverse %}
 
@@ -122,12 +123,13 @@ comments: false
 
 <section>
     <div class="section-title">
-        <h2><span>Before 2020</span></h2>
+        <h2><span>Before {{ year | plus: 1 }}</span></h2>
     </div>
 
     <div class="article-post">
 <ul>
-{% assign year = 2019 %}
+
+{% assign range = (1..100) %}
 {% for i in range %}
 {% if year == 2013 %}
 {% break %}
