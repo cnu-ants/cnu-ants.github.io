@@ -20,6 +20,7 @@ exps: [
 [Google, Visiting Faculty Researcher, 03.2020 - 08.2020]
 ]
 awards: [
+[Chungnam National University, Best Teacher Award, 2024],
 [ACM SIGSOFT (ASE), Distinguished Paper Award, 2020],
 [KAIST School of Computing, Distinguished Doctoral Dissertation Award, 2020],
 [OOPSLA, Distinguished Artifact Evaluation Committee, 2018],
