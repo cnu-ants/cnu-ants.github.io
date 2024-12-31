@@ -31,6 +31,8 @@ academic-services: [
 [ISSTA, Program Committee Member in Technical-track, 2024, 2025],
 [TOSEM, Reviewer, 2022, 2024],
 [TSE, Reviewer, 2022 - 2024],
+[CSUR, Reviewer, 2024],
+[JSS, Reviewer, 2024],
 [OOPSLA, Committee Member in Artifact Evaluation, 2018, 2019],
 [PLDI, Committee Member in Artifact Evaluation, 2018],
 ]
