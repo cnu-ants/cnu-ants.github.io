@@ -1,6 +1,6 @@
 ---
-visible: true
-pub_visible: true
+visible: false
+pub_visible: false
 layout: resume
 name: Taehyun Kim
 name_kor: 김태현
