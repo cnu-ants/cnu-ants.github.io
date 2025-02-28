@@ -5,11 +5,11 @@ layout: resume
 name: Yujin An
 name_kor: 안유진
 email: Trixie@o.cnu.ac.kr
-position: Undergraduate
+position: Graduate
 affiliation: Chungnam National University
-position-display: B.S. Student
+position-display: M.S. Student
 permalink: /members/yujinan
 image: assets/images/yujina.jpg
-startdate: 202305
+startdate: 202503
 office: "W2 #502"
 ---
