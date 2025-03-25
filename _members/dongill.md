@@ -1,6 +1,6 @@
 ---
-visible: true
-pub_visible: true
+visible: false
+pub_visible: false
 layout: resume
 # TODO: Write your name in English
 name: Dongil Lee
@@ -12,7 +12,7 @@ email: vfturtle@gmail.com
 # (e.g.) image: assets/images/sunghol.png
 image: assets/images/dongill.jpg
 # TODO: Choose one - Graduate or Undergraduate
-position: Graduate
+position: Undergraduate
 # TODO: Write your affiliation (most cases, Chungnam National University)
 affiliation: Chungnam National University
 # TODO: Choose one - B.S. or M.S. or Ph.D. Student
