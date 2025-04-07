@@ -1,0 +1,28 @@
+<!-- begin post -->
+<a href="{{ image.url }}" style="color: black">
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    "
+  >
+    {% if image.url %}
+    <img width="50%" height="50%" src="{{ image.url }}" />
+    {% endif %}
+  </div>
+  {% if image.desc %}
+  <div
+    style="
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: -20px;
+      margin-bottom: 20px;
+    "
+  >
+    {{ image.desc }}
+  </div>
+  {% endif %}
+</a>
