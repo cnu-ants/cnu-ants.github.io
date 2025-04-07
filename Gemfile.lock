@@ -70,7 +70,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
-  ruby
 
 DEPENDENCIES
   jekyll-archives
