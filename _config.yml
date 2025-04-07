@@ -2,14 +2,14 @@
 labname: "Software Analysis & Testing"
 name: "Software Analysis & Testing Research Group"
 title: "Software Analysis & Testing Research Group"
-logo: 'assets/images/logo-no-background.png'
-ants-character: 'assets/images/ants.png'
-ants-img: 'assets/images/ants_square.png'
-favicon: 'assets/images/favicon.ico'
-baseurl: ''
-google_analytics: 'UA-46278016-1'
-disqus: 'demowebsite'
-mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
+logo: "assets/images/logo-no-background.png"
+ants-character: "assets/images/ants.png"
+ants-img: "assets/images/ants_square.png"
+favicon: "assets/images/favicon.ico"
+baseurl: ""
+google_analytics: "UA-46278016-1"
+disqus: "demowebsite"
+mailchimp-list: "https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b"
 include: ["_pages"]
 permalink: /:title/
 
@@ -19,7 +19,7 @@ authors:
     name: Sungho Lee
     display_name: Sungho Lee
     #gravatar: e56154546cf4be74e393c62d1ae9f9d4
-    avatar: 'assets/images/sunghol_avatar.png'
+    avatar: "assets/images/sunghol_avatar.png"
     email: eshaj@cnu.ac.kr
     #web: https://www.wowthemes.net
     #twitter: https://twitter.com/wowthemesnet
@@ -32,19 +32,19 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
-    
+
 # Archives
 jekyll-archives:
   enabled:
     - categories
   layout: archive
   permalinks:
-    category: '/category/:name/'
-    
-# Pagination 
-paginate: 4 
+    category: "/category/:name/"
+
+# Pagination
+paginate: 4
 paginate_path: /page:num/
-    
+
 # Other
 markdown: kramdown
 
@@ -66,6 +66,8 @@ lazyimages: "disabled"
 # for members
 collections:
   members:
+    output: true
+  albums:
     output: true
   papers:
     output: false
