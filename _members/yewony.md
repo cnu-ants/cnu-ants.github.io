@@ -13,4 +13,5 @@ permalink: /members/yewony
 image: assets/images/yewony.jpg
 startdate: 202203
 office: "W2 #502"
+job: "한국생명공학연구원"
 ---

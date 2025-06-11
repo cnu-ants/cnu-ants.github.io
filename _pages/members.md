@@ -93,13 +93,15 @@ comments: true
             MS, 
         {%- elsif member.position-display == "Ph.D." -%}
             PhD,
+        {%- elsif member.position-display == "Integrated MS & Ph.D. student" -%}
+            Integrated MS & PhD
         {% endif %}
         {{- member.gradyear -}} 
         )&nbsp;
         {% if member.job %}
             {{ member.job }} &nbsp;
         {% endif %}
-        <a href="mailto:{{ member.email }}">{{ member.email }}</a> 
+        <!-- <a href="mailto:{{ member.email }}">{{ member.email }}</a>  -->
         </li>
       {% endif %}
     {% endfor %}
