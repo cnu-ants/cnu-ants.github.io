@@ -22,29 +22,27 @@ comments: false
         <h2><span>{{album.name}}</span></h2>
       </div>
       {% assign images = album.images %}
-      {% for image in images %}
-        {% include album_image.html %}
-      {% endfor %}
+      {% include album_image.html %}
     {% endfor %}
     </div>
 
 </section>
 
-<section class="featured-posts">
-    <div class="section-title">
-        <h1><span>Unofficial Albums</span></h1>
-    </div>
-
-    <div style="float:none;overflow:hidden">
-    {% for album in unofficial_albums %}
-      <div style="margin-top: 40px;" class="section-title">
-        <h2><span>{{album.name}}</span></h2>
-      </div>
-      {% assign images = album.images %}
-      {% for image in images %}
-        {% include album_image.html %}
-      {% endfor %}
-    {% endfor %}
-    </div>
-
-</section>
+<!-- <section class="featured-posts"> -->
+<!--     <div class="section-title"> -->
+<!--         <h1><span>Unofficial Albums</span></h1> -->
+<!--     </div> -->
+<!---->
+<!--     <div style="float:none;overflow:hidden"> -->
+<!--     {% for album in unofficial_albums %} -->
+<!--       <div style="margin-top: 40px;" class="section-title"> -->
+<!--         <h2><span>{{album.name}}</span></h2> -->
+<!--       </div> -->
+<!--       {% assign images = album.images %} -->
+<!--       {% for image in images %} -->
+<!--         {% include album_image.html %} -->
+<!--       {% endfor %} -->
+<!--     {% endfor %} -->
+<!--     </div> -->
+<!---->
+<!-- </section> -->
