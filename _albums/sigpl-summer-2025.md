@@ -2,7 +2,7 @@
 visible: true
 pub_visible: true
 type: Official
-name: SIGPL Summer School 2025 [Sogang Univ., 2025.08.20-22] 
+name: SIGPL Summer School 2025(SIGPL 여름학교) [Sogang Univ., 2025.08.20-22] 
 name_kor: SIGPL 2023-2024 계절학교 
 images:
   - url: "https://cnu-ants.synology.me/mediawiki/images/6/64/SIGPL_front.jpeg"

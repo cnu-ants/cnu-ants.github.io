@@ -2,7 +2,7 @@
 visible: true
 pub_visible: true
 type: Official
-name: CNU & CBNU Seminar
+name: CNU & CBNU Seminar [ChungBuk Univ., 2025.04.25]
 name_kor: CNU & CBNU Seminar
 images:
   - url: "https://cnu-ants.synology.me/mediawiki/images/3/3a/Seminar_SYB.jpg",
