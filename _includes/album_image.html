@@ -1,28 +1,35 @@
-<!-- begin post -->
-<a href="{{ image.url }}" style="color: black">
-  <div
-    style="
+<!-- 부모 div: 전체 앨범 가로 정렬 -->
+<div style="
+  display: flex;
+  flex-wrap: wrap;       /* 화면이 좁으면 줄바꿈 */
+  gap: 20px;             /* 이미지 사이 간격 */
+  justify-content: center; /* 전체 중앙 정렬 */
+">
+
+  {% for image in images %}
+  <!-- 각 이미지+설명 세트 -->
+  <a href="{{ image.url }}" style="color: black; text-decoration: none;">
+    <div style="
       display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    "
-  >
-    {% if image.url %}
-    <img width="50%" height="50%" src="{{ image.url }}" />
-    {% endif %}
-  </div>
-  {% if image.desc %}
-  <div
-    style="
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-      margin-top: -20px;
-      margin-bottom: 20px;
-    "
-  >
-    {{ image.desc }}
-  </div>
-  {% endif %}
-</a>
+      flex-direction: column;  /* 이미지 위에 설명 세로 배치 */
+      align-items: center;     /* 가운데 정렬 */
+    ">
+      {% if image.url %}
+      <img src="{{ image.url }}" style="width:350px; height:auto;" />
+      {% endif %}
+
+      {% if image.desc %}
+      <div style="
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;       /* 이미지와 설명 사이 간격 */
+      ">
+        {{ image.desc }}
+      </div>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+
+</div>
