@@ -7,6 +7,32 @@ comments: false
 
 <section>
     <div class="section-title">
+        <h2><span> 2025 Fall</span></h2>
+    </div>
+
+    <div class="article-post">
+    <ul>
+      <li> Software Analysis </li>
+      <li> Object-Oriented Design </li>
+</ul>
+</div>
+</section>
+
+<section>
+    <div class="section-title">
+        <h2><span> 2025 String</span></h2>
+    </div>
+
+    <div class="article-post">
+    <ul>
+      <li> Advanced Programming Language Theory </li>
+      <li> Introduction to Programming Languages </li>
+</ul>
+</div>
+</section>
+
+<section>
+    <div class="section-title">
         <h2><span> 2024 Fall</span></h2>
     </div>
 
