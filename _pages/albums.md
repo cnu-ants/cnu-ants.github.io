@@ -5,7 +5,7 @@ permalink: /albums
 comments: false
 ---
 
-{% assign unofficial_albums = site.albums | where: "type", "Unofficial" | sort: "album_date" | reverse %}
+<!-- {% assign unofficial_albums = site.albums | where: "type", "Unofficial" | sort: "album_date" | reverse %} -->
 {% assign official_albums = site.albums | where: "type", "Official" | sort: "album_date" | reverse %}
 
 {% assign members = site.members | where: "visible", "true" %}
