@@ -2,7 +2,7 @@
 visible: true
 pub_visible: true
 layout: resume
-name: Minkyoung Jeong
+name: Mingyeong Jeong
 name_kor: 정민경
 email: jmink002@o.cnu.ac.kr
 position: Graduate

@@ -6,7 +6,7 @@ email: eshaj@cnu.ac.kr
 image: assets/images/sunghol.png
 position: Professor
 affiliation: Chungnam National University
-position-display: Assistant Professor
+position-display: Associate Professor
 permalink: /members/sunghol
 office: "W2 523"
 phone: 042-821-5445
@@ -16,7 +16,8 @@ edu: [
 [Ajou University, B.S. Information and Computer Engineering, 03.2006 - 02.2012]
 ]
 exps: [
-[Chungnam National University, Assistant Professor, 09.2020 - present],
+[Chungnam National University, Associate Professor, 09.2025 - present],
+[Chungnam National University, Assistant Professor, 09.2020 - 08.2025],
 [Google, Visiting Faculty Researcher, 03.2020 - 08.2020]
 ]
 awards: [
@@ -38,15 +39,17 @@ academic-services: [
 ]
 visible: true
 pub_visible: false
-introduction: "I'm an Assistant Professor in the Department of Computer
-Science and Engineering at Chungnam National University. I earned my Ph.D. and
-M.S in School of Computing at KAIST, and B.S from Ajou University. After
-graduating from KAIST, I worked at Google as a visiting faculty researcher for
-6 months.  My research interest is static analysis for Android applications to
-detect bugs and security vulnerabilities in the apps. Especially, I have
-researched static analysis techniques for multilingual Android applications
-(e.g. Hybrid applications, JNI applications) implemented in multiple
-languages."
+introduction: "
+I am an Associate Professor in the Department of Computer Science and
+Engineering at Chungnam National University. 
+I received my Ph.D. and M.S. in the School of Computing at KAIST, and my B.S.
+in Computer Science from Ajou University. 
+Before joining CNU, I spent six months as a visiting faculty researcher at
+Google.
+My research interests lie primarily in enhancing static analysis techniques to
+detect faults and improve the reliability of real-world software systems,
+including Android applications and binaries, as well as mission-critical
+software such as satellite and autonomous driving systems."
 ---
 
 
