@@ -14,7 +14,7 @@ comments: false
     <ul>
       <li> Software Analysis </li>
       <li> Object-Oriented Design </li>
-      <li> AI and Data Utility (team teaching) </li>
+      <li> Artificial Intelligence and Data Literacy (team teaching) </li>
 </ul>
 </div>
 </section>
