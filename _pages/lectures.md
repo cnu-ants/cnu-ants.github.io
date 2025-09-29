@@ -14,19 +14,21 @@ comments: false
     <ul>
       <li> Software Analysis </li>
       <li> Object-Oriented Design </li>
+      <li> AI and Data Utility (team teaching) </li>
 </ul>
 </div>
 </section>
 
 <section>
     <div class="section-title">
-        <h2><span> 2025 String</span></h2>
+        <h2><span> 2025 Spring</span></h2>
     </div>
 
     <div class="article-post">
     <ul>
       <li> Advanced Programming Language Theory </li>
       <li> Introduction to Programming Languages </li>
+      <li> Basic of Programming for AI (team teaching) </li>
 </ul>
 </div>
 </section>
