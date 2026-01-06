@@ -24,25 +24,8 @@ comments: false
         <h2><span>{{album.name}}</span></h2>
       </div>
       {% assign images = album.images %}
-      {% assign description = album.description %}
       {% include album_image.html %}
-    {% endfor %}
-    </div>
-
-</section>
-
-<section class="featured-posts">
-    <div class="section-title">
-        <h1><span>Team Outing</span></h1>
-    </div>
-
-    <div style="float:none;overflow:hidden">
-    {% for album in outing_albums %}
-      <div style="margin-top: 40px;" class="section-title">
-        <h2><span>{{album.name}}</span></h2>
-      </div>
-      {% assign images = album.images %}
-      {% include album_image.html %}
+      {% include album_content.html tags=album.tags people=album.people authors=album.authors card_date=album.card_date date=album.date description=album.description %}
     {% endfor %}
     </div>
 
