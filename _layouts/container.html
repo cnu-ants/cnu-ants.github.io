@@ -150,20 +150,22 @@
               >
             </li>
 
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://cnu-ants.synology.me/mediawiki/index.php?title=대문"
-                >λNTS wiki</a
-              >
-            </li>
-
             {% if page.url == "/albums" %}
             <li class="nav-item active">{% else %}</li>
 
             <li class="nav-item">
               {% endif %}
               <a class="nav-link" href="{{ site.baseurl }}/albums">Albums</a>
+            </li>
+
+            {% if page.url == "/activities" %}
+            <li class="nav-item active">{% else %}</li>
+
+            <li class="nav-item">
+              {% endif %}
+              <a class="nav-link" href="{{ site.baseurl }}/activities"
+                >Activities</a
+              >
             </li>
 
             {% comment %}
