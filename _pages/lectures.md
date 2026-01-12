@@ -7,6 +7,20 @@ comments: false
 
 <section>
     <div class="section-title">
+        <h2><span> 2026 Spring</span></h2>
+    </div>
+
+    <div class="article-post">
+    <ul>
+      <li> Advanced Programming Language Theory </li>
+      <li> Introduction to Programming Languages </li>
+      <li> Basic of Programming for AI (team teaching) </li>
+</ul>
+</div>
+</section>
+
+<section>
+    <div class="section-title">
         <h2><span> 2025 Fall</span></h2>
     </div>
 
