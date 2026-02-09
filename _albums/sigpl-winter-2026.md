@@ -8,5 +8,7 @@ images:
   - url: "https://cnu-ants.synology.me/mediawiki/images/d/db/%2826.02.04-06%29SIGPLw-1.jpeg"
   - url: "https://cnu-ants.synology.me/mediawiki/images/a/a3/%2826.02.04-06%29SIGPLw_photo.jpeg"
   - url: "https://cnu-ants.synology.me/mediawiki/images/6/6c/%2826.02.04-06%29SIGPLw_session2.jpeg"
+  - url: "https://cnu-ants.synology.me/mediawiki/images/b/b3/%2826.02.04-06%29SIGPLw_session1.jpeg"
+  - url: "https://cnu-ants.synology.me/mediawiki/images/4/4c/%2826.02.04-06%29SIGPL26w-photo1.jpeg"
 album_date: 20260204
 ---
