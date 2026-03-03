@@ -2,19 +2,29 @@
 layout: container
 title: default
 ---
+
 <!-- Site Title
 ================================================== -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-BQ78JGLWMK"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-BQ78JGLWMK");
+</script>
 <div class="mainheading">
-    <h1 class="sitetitle">{{ site.name }}</h1>
-    {% comment %}
-    <p class="lead">
-        {{ site.description }}
-    </p>
-    {% endcomment %}
+  <h1 class="sitetitle">{{ site.name }}</h1>
+  {% comment %}
+  <p class="lead">{{ site.description }}</p>
+  {% endcomment %}
 </div>
 
 <!-- Content
 ================================================== -->
-<div class="main-content">
-    {{ content }}
-</div>
+<div class="main-content">{{ content }}</div>
