@@ -13,4 +13,5 @@ image: assets/images/sanghwal.JPG
 permalink: /members/sanghwal
 startdate: 202309
 office: "W2 502"
+job: "다산네트웍솔루션즈"
 ---
