@@ -1,0 +1,43 @@
+name: Sync conference deadlines
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: sync-conference-deadlines
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Sync deadlines from CCF Deadlines
+        run: python scripts/sync_deadlines.py
+
+      - name: Commit and push if data changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/conferences.yml
+          if git diff --staged --quiet; then
+            echo "No deadline changes"
+          else
+            git commit -m "Sync conference deadlines from CCF Deadlines"
+            git push
+          fi

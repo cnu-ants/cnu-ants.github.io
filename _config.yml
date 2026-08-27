@@ -72,4 +72,4 @@ collections:
   papers:
     output: false
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, scripts, vendor]

@@ -1,0 +1,58 @@
+---
+layout: page
+title: Conferences
+permalink: /conferences
+comments: false
+---
+
+<p class="conf-source">Last update: <time id="conf-updated">—</time>.</p>
+
+<div class="conf-legend">
+  <table>
+    <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tag in site.data.conference_catalog.tags %}
+      <tr>
+        <td>
+          <span class="conf-tag conf-tag-{{ tag.id }}">{{ tag.id }}</span>
+        </td>
+        <td>{{ tag.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul>
+    <li>BK21 — IF 1–4 (목록에 없으면 IF-)</li>
+    <li>정보과학회 — 최우수 / 우수</li>
+    <li>CORE — A* / A / B / C</li>
+  </ul>
+</div>
+
+<div class="conf-filters" id="conf-filters"></div>
+
+<section class="conf-section">
+  <div class="section-title">
+    <h2><span>Upcoming</span></h2>
+  </div>
+  <div id="conf-upcoming"></div>
+</section>
+
+<section class="conf-section">
+  <div class="section-title">
+    <h2><span>Recent</span></h2>
+  </div>
+  <div id="conf-past"></div>
+</section>
+
+<script id="conference-payload" type="application/json">
+  {
+    "catalog": {{ site.data.conference_catalog | jsonify }},
+    "data": {{ site.data.conferences | jsonify }}
+  }
+</script>
+<script src="{{ site.baseurl }}/assets/js/conferences.js"></script>

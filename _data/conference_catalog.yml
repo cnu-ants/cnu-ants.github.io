@@ -1,0 +1,295 @@
+# Lab-owned metadata. Deadlines are filled in by scripts/sync_deadlines.py.
+# Inclusion: gist https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206
+# 중 한국정보과학회 2024 소분야가 SE / PL / Sec 인 학회.
+# Rank sources:
+#   kiise   — 한국정보과학회 2024 우수학술대회 (최우수 / 우수)
+#   bk21_if — BK21 플러스 CS 우수국제학술대회 IF (2018). 목록에 없으면 null → 페이지에 IF-
+#   core    — CCF Deadlines YAML의 CORE 값 (동기화 시 채워짐)
+#
+# ccfddl_title: CCF Deadlines의 title이 약자와 다를 때만 지정
+# ccfddl_sub: allconf.yml에 동명 학회가 있을 때만 지정 (예: FSE)
+
+tags:
+  - id: SE
+    name: Software Engineering
+  - id: PL
+    name: Programming Languages
+  - id: SEC
+    name: Security
+
+conferences:
+  # --- SE (정보과학회 CS SE) ---
+  - title: ASE
+    tags: [SE]
+    kiise: 최우수
+    bk21_if: 3
+    ccfddl_sub: SE
+  - title: FSE
+    tags: [SE]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SE
+  - title: ICSE
+    tags: [SE]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SE
+  - title: ISSTA
+    tags: [SE]
+    kiise: 최우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: FASE
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SE
+  - title: FM
+    tags: [SE]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SE
+  - title: ICSME
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: ICSOC
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SE
+  - title: ICST
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SE
+  - title: ICWS
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: ISSRE
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SE
+  - title: MODELS
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_title: MoDELS
+    ccfddl_sub: SE
+  - title: MSR
+    tags: [SE]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SE
+  - title: RE
+    tags: [SE]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: SANER
+    tags: [SE]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SE
+  - title: SCAM
+    tags: [SE]
+    kiise:
+    bk21_if:
+    ccfddl_sub: SE
+  - title: RV
+    tags: [SE]
+    kiise:
+    bk21_if:
+    ccfddl_sub: SE
+
+  # --- PL (정보과학회 CS PL) ---
+  - title: CAV
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: CT
+  - title: ICFP
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: LICS
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 3
+    ccfddl_sub: CT
+  - title: OOPSLA
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SE
+  - title: PLDI
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SE
+  - title: POPL
+    tags: [PL]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SE
+  - title: CC
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+  - title: CGO
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_title: IEEE/ACM CGO
+    ccfddl_sub: DS
+  - title: CONCUR
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: CT
+  - title: ECOOP
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: ESOP
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+  - title: LCTES
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SE
+  - title: SAS
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SE
+  - title: TACAS
+    tags: [PL]
+    kiise: 우수
+    bk21_if: 2
+  - title: VMCAI
+    tags: [PL]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SE
+
+  # --- SEC (정보과학회 CS Sec) ---
+  - title: CCS
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SC
+  - title: CRYPTO
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SC
+  - title: EUROCRYPT
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SC
+  - title: NDSS
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: S&P
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 4
+    ccfddl_sub: SC
+  - title: USENIX Security
+    tags: [SEC]
+    kiise: 최우수
+    bk21_if: 3
+    ccfddl_sub: SC
+  - title: ACNS
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: ACSAC
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: AsiaCCS
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SC
+  - title: ASIACRYPT
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: CHES
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: CODASPY
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: CSF
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_title: CSFW
+    ccfddl_sub: SC
+  - title: DSN
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: ESORICS
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: EuroS&P
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: FC
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SC
+  - title: PKC
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: PETS
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC
+  - title: RAID
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 2
+    ccfddl_sub: SC
+  - title: SOUPS
+    tags: [SEC]
+    kiise: 우수
+    bk21_if: 1
+    ccfddl_sub: SC
+  - title: WiSec
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_sub: SC

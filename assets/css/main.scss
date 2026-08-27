@@ -13,3 +13,159 @@
 	"syntax",
     "starsnonscss"
 ;
+
+.conf-source {
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 1.25rem;
+}
+
+.conf-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem 2.5rem;
+	margin-bottom: 1.25rem;
+	align-items: flex-start;
+}
+
+.conf-legend table {
+	margin-bottom: 0;
+	font-size: 0.92rem;
+}
+
+.conf-legend th,
+.conf-legend td {
+	padding: 0.25rem 0.75rem 0.25rem 0;
+	border: 0;
+	background: transparent;
+}
+
+.conf-legend ul {
+	margin: 0;
+	padding-left: 1.1rem;
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.conf-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0 0 1.5rem;
+}
+
+.conf-filter {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background: #fff;
+	border-radius: 999px;
+	padding: 0.3rem 0.85rem;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #495057;
+	cursor: pointer;
+}
+
+.conf-filter.is-active {
+	background: #00ab6b;
+	border-color: #00ab6b;
+	color: #fff;
+}
+
+.conf-tag {
+	display: inline-block;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	padding: 0.12rem 0.45rem;
+	border-radius: 0.25rem;
+	margin-right: 0.25rem;
+	color: #fff;
+	vertical-align: middle;
+}
+
+.conf-tag-SE { background: #2b6cb0; }
+.conf-tag-PL { background: #00ab6b; }
+.conf-tag-SEC { background: #c53030; }
+
+.conf-card {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.conf-card-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.4rem 0.6rem;
+}
+
+.conf-card-title h3 {
+	margin: 0;
+	margin-bottom: 0;
+	font-size: 1.15rem;
+	font-weight: 700;
+}
+
+.article-post .conf-card,
+.article-post .conf-legend,
+.article-post .conf-filters {
+	text-align: left;
+}
+
+.article-post .conf-source,
+.article-post .conf-where,
+.article-post .conf-deadline-meta,
+.article-post .conf-empty {
+	margin-bottom: 0.35rem;
+}
+
+.article-post .conf-source {
+	margin-bottom: 1.25rem;
+}
+
+.conf-ranks {
+	color: rgba(0, 0, 0, 0.55);
+	font-size: 0.92rem;
+}
+
+.conf-where,
+.conf-deadline-meta {
+	margin: 0.35rem 0 0;
+	color: rgba(0, 0, 0, 0.62);
+	font-size: 0.92rem;
+}
+
+.conf-remaining {
+	flex: 0 0 auto;
+	min-width: 11rem;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	font-weight: 700;
+	color: #00ab6b;
+	align-self: center;
+}
+
+.conf-remaining.is-urgent {
+	color: #c53030;
+}
+
+.conf-remaining.is-past {
+	color: rgba(0, 0, 0, 0.4);
+	font-weight: 600;
+}
+
+.conf-empty {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 767px) {
+	.conf-card {
+		flex-direction: column;
+	}
+
+	.conf-remaining {
+		text-align: left;
+		min-width: 0;
+	}
+}
