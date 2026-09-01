@@ -13,4 +13,8 @@ image: assets/images/kyungmink.jpg
 startdate: 202603
 office: "W2 #502"
 github: MGPOCKY
+linkedin: "https://www.linkedin.com/in/mgpocky/"
+interests:
+  - Static Analysis
+  - Automated Testing
 ---
