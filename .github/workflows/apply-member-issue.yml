@@ -83,25 +83,32 @@ jobs:
           gh issue comment "${{ github.event.issue.number }}" --body "Jekyll 빌드가 실패해서 사이트에는 반영하지 않았습니다. 소개/학력의 YAML이 깨졌거나 사이트 빌드를 막은 값이 있습니다."
 
       - name: Commit and push if the member file changed
+        id: push
         if: success() && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _members/*.md
           if git diff --staged --quiet; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             echo "No member file changes"
             exit 0
           fi
           git commit -m "Apply member profile from #${{ github.event.issue.number }}"
           for attempt in 1 2 3; do
-            git pull --rebase origin "${{ github.event.repository.default_branch }}" && git push && exit 0
+            if git pull --rebase origin "${{ github.event.repository.default_branch }}" && git push; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             sleep 5
           done
           echo "Push failed after retries"
           exit 1
 
-      - name: Comment after a successful push
-        if: success() && steps.diff.outputs.changed == 'true'
+      - name: Comment and close after a successful push
+        if: success() && steps.push.outputs.pushed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh issue comment "${{ github.event.issue.number }}" --body-file "$RUNNER_TEMP/member-apply-comment.md"
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body-file "$RUNNER_TEMP/member-apply-comment.md"
+          gh issue close "${{ github.event.issue.number }}" --reason completed
