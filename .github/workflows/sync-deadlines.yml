@@ -41,3 +41,14 @@ jobs:
             git commit -m "Sync conference deadlines from CCF Deadlines"
             git push
           fi
+
+      - name: Sync Google Calendar
+        env:
+          GOOGLE_CALENDAR_ID: 04e8b4748a864cc0420d48d1c278162e6860e05e3d08fac783d0b7470b4b8093@group.calendar.google.com
+          GOOGLE_CALENDAR_CREDENTIALS: ${{ secrets.GOOGLE_CALENDAR_CREDENTIALS }}
+        run: |
+          if [ -z "$GOOGLE_CALENDAR_CREDENTIALS" ]; then
+            echo "::warning::GOOGLE_CALENDAR_CREDENTIALS secret is not set. Share the ANTS calendar with a service account and add the JSON key to that secret."
+            exit 0
+          fi
+          python scripts/sync_calendar.py
