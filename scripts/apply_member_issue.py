@@ -92,6 +92,20 @@ CHECKBOX_TO_FIELD = {
     "기타": "notes",
 }
 
+VALUE_HEADINGS = {
+    "email": "이메일",
+    "position": "직함",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "interests": "관심 분야",
+    "introduction": "짧은 소개",
+    "edu": "학력",
+    "exps": "경력 / 인턴",
+    "awards": "수상",
+    "homepage": "개인 홈페이지",
+    "scholar": "Google Scholar",
+}
+
 POSITION_MAP = {
     "B.S. Student": ("Undergraduate", "B.S. Student"),
     "Intern": ("Undergraduate", "Intern"),
@@ -145,7 +159,7 @@ def checked_labels(section: str | None) -> set[str]:
         return set()
     checked: set[str] = set()
     for raw in section.splitlines():
-        match = re.match(r"^- \[[xX]\] (.+)$", raw.strip())
+        match = re.match(r"^[-*] \[[xX]\] (.+)$", raw.strip())
         if match:
             checked.add(match.group(1).strip())
     return checked
@@ -304,6 +318,39 @@ def dump_front_matter(data: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def replace_or_insert_key(front_matter: str, key: str, block: str) -> str:
+    pattern = re.compile(
+        rf"(?ms)^{re.escape(key)}:.*?(?=^[A-Za-z0-9_-]+:|\Z)",
+    )
+    replacement = block.rstrip() + "\n"
+    if pattern.search(front_matter):
+        return pattern.sub(replacement, front_matter, count=1)
+    if not front_matter.endswith("\n"):
+        front_matter += "\n"
+    return front_matter + replacement
+
+
+def patch_member_file(original: str, data: dict[str, Any], keys: list[str]) -> str:
+    if not original.startswith("---"):
+        raise Rejected("멤버 파일 front matter를 읽지 못했습니다.")
+    parts = original.split("---", 2)
+    if len(parts) < 3:
+        raise Rejected("멤버 파일 front matter를 읽지 못했습니다.")
+    front_matter = parts[1]
+    rest = parts[2]
+    for key in keys:
+        if key not in data:
+            continue
+        block = "\n".join(dump_key(key, data[key]))
+        front_matter = replace_or_insert_key(front_matter, key, block)
+    patched = "---" + front_matter + "---" + rest
+    parsed, _body = split_front_matter(patched)
+    for key in keys:
+        if parsed.get(key) != data.get(key):
+            raise Rejected(f"{key} 값을 파일에 안전하게 쓰지 못했습니다.")
+    return patched
+
+
 def load_members(members_dir: Path) -> list[tuple[Path, dict[str, Any], str]]:
     members: list[tuple[Path, dict[str, Any], str]] = []
     for path in sorted(members_dir.glob("*.md")):
@@ -423,10 +470,11 @@ def apply_fields(
     fields: dict[str, str],
     checked: set[str],
     author: str,
-) -> tuple[dict[str, Any], list[str], list[str]]:
+) -> tuple[dict[str, Any], list[str], list[str], list[str]]:
     updated = dict(data)
     applied: list[str] = []
     skipped: list[str] = []
+    changed_keys: list[str] = []
 
     def maybe_set(field: str, label: str, value: Any) -> None:
         if field in IMMUTABLE_KEYS:
@@ -437,10 +485,18 @@ def apply_fields(
             return
         updated[field] = value
         applied.append(label)
+        if field not in changed_keys:
+            changed_keys.append(field)
 
     wanted = {CHECKBOX_TO_FIELD[label] for label in checked if label in CHECKBOX_TO_FIELD}
     if not wanted:
         raise Rejected("선택한 항목이 없습니다. 체크박스에서 넣을 정보를 골라 주세요.")
+
+    for field, heading in VALUE_HEADINGS.items():
+        if field in wanted:
+            continue
+        if not is_blank(fields.get(heading)):
+            skipped.append(f"{heading}: 값이 있지만 체크하지 않아 반영하지 않았습니다.")
 
     if "github" in wanted:
         github_value = fields.get("GitHub", "")
@@ -484,6 +540,9 @@ def apply_fields(
                     updated["position"] = pos
                     updated["position-display"] = display
                     applied.append("직함")
+                    for key in ("position", "position-display"):
+                        if key not in changed_keys:
+                            changed_keys.append(key)
 
     if "linkedin" in wanted:
         if is_blank(fields.get("LinkedIn")):
@@ -548,7 +607,7 @@ def apply_fields(
 
     if not applied:
         raise Rejected("자동으로 반영할 값이 없습니다.\n\n" + format_notes(skipped))
-    return updated, applied, skipped
+    return updated, applied, skipped, changed_keys
 
 
 def format_notes(items: list[str]) -> str:
@@ -571,7 +630,7 @@ def build_comment(ok: bool, path: Path | None, applied: list[str], skipped: list
     if not ok:
         return "자동 반영을 건너뛰었습니다.\n\n" + message
     lines = [
-        f"`{path.name}`에 아래 항목을 반영하고 `main`에 푸시했습니다.",
+        f"Jekyll 빌드가 성공해 `{path.name}` 변경을 `main`에 푸시했습니다.",
         "",
         format_notes([f"반영: {item}" for item in applied]),
     ]
@@ -623,21 +682,29 @@ def process_issue(issue: dict[str, Any], members_dir: Path) -> tuple[bool, str, 
     assert_same_person(fields, data, path)
     original_github = data.get("github")
     original_permalink = data.get("permalink")
-    updated, applied, skipped = apply_fields(data, mode, fields, checked, user)
+    updated, applied, skipped, changed_keys = apply_fields(data, mode, fields, checked, user)
     if updated.get("github") != original_github or updated.get("permalink") != original_permalink:
         raise Rejected("github 또는 permalink가 바뀌려 해서 중단했습니다.")
     roundtrip_ok(updated)
-    suffix = body[1:] if body.startswith("\n") else body
-    path.write_text(dump_front_matter(updated) + suffix, encoding="utf-8")
+    original_text = path.read_text(encoding="utf-8")
+    path.write_text(patch_member_file(original_text, updated, changed_keys), encoding="utf-8")
     comment = build_comment(True, path, applied, skipped, "")
     return True, comment, path
+
+
+def write_success_comment(body: str) -> None:
+    path = os.environ.get("MEMBER_APPLY_COMMENT")
+    if path:
+        Path(path).write_text(body, encoding="utf-8")
+        return
+    sys.stderr.write(body + "\n")
 
 
 def run(issue_json: Path, members_dir: Path) -> int:
     issue = json.loads(issue_json.read_text(encoding="utf-8"))
     try:
         _changed, comment, _path = process_issue(issue, members_dir)
-        post_issue_comment(comment)
+        write_success_comment(comment)
         return 0
     except Rejected as error:
         post_issue_comment(build_comment(False, None, [], [], str(error)))
@@ -752,6 +819,64 @@ static analysis, Android
 
         for member_path, member_data, _member_body in load_members(MEMBERS_DIR):
             roundtrip_ok(member_data)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        members_dir = Path(tmp)
+        sample = members_dir / "soyeonb.md"
+        original = (
+            "---\nlayout: resume\nname: Soyeon Baek\nname_kor: 백소연\n"
+            "github: soyeonb\npermalink: /members/soyeonb\n"
+            "awards: [\n[한국정보과학회(KSC), 우수발표논문상, 2024],]\n---\n"
+        )
+        sample.write_text(original, encoding="utf-8")
+        checkbox_only = """
+### 이름 (English)
+
+Soyeon Baek
+
+### 이름 (한글)
+
+백소연
+
+### 멤버 페이지 주소
+
+https://cnu-ants.github.io/members/soyeonb
+
+### 추가할 항목
+
+- [X] LinkedIn
+- [ ] Google Scholar
+- [ ] 수상 (Honors)
+
+### LinkedIn
+
+https://www.linkedin.com/in/soyeon-baek
+
+### Google Scholar
+
+https://scholar.google.com/citations?user=abcdefghijk
+
+### 수상
+
+한국정보과학회(KCC), 최우수상, 2024
+"""
+        changed, comment, path = process_issue(
+            {
+                "user": "soyeonb",
+                "title": "[Member] Add info: Soyeon Baek",
+                "body": checkbox_only,
+            },
+            members_dir,
+        )
+        text = path.read_text(encoding="utf-8")
+        data, _body = split_front_matter(text)
+        assert changed and path == sample
+        assert data["linkedin"] == "https://www.linkedin.com/in/soyeon-baek"
+        assert "scholar" not in data
+        assert "awards: [\n[한국정보과학회(KSC), 우수발표논문상, 2024],]" in text
+        assert "체크하지 않아 반영하지 않았습니다" in comment
+        assert "github: soyeonb" in text
+        assert "최우수상" not in text
 
     print("self-test ok")
 

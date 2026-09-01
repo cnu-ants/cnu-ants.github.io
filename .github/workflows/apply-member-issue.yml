@@ -45,9 +45,39 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          MEMBER_APPLY_COMMENT: ${{ runner.temp }}/member-apply-comment.md
         run: python scripts/apply_member_issue.py --issue-json "$RUNNER_TEMP/issue.json"
 
+      - name: Check for member file changes
+        id: diff
+        run: |
+          if git diff --quiet -- _members; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Ruby
+        if: steps.diff.outputs.changed == 'true'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.5"
+          bundler-cache: true
+
+      - name: Build site
+        id: build
+        if: steps.diff.outputs.changed == 'true'
+        run: bundle exec jekyll build
+
+      - name: Comment if the site build failed
+        if: failure() && steps.build.conclusion == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body "Jekyll 빌드가 실패해서 사이트에는 반영하지 않았습니다. 소개/학력의 YAML이 깨졌거나 사이트 빌드를 막은 값이 있습니다."
+
       - name: Commit and push if the member file changed
+        if: success() && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -63,3 +93,9 @@ jobs:
           done
           echo "Push failed after retries"
           exit 1
+
+      - name: Comment after a successful push
+        if: success() && steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh issue comment "${{ github.event.issue.number }}" --body-file "$RUNNER_TEMP/member-apply-comment.md"
