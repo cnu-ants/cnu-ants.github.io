@@ -50,9 +50,9 @@ comments: false
 </section>
 
 <script id="conference-payload" type="application/json">
-  {
-    "catalog": {{ site.data.conference_catalog | jsonify }},
-    "data": {{ site.data.conferences | jsonify }}
-  }
+{
+  "catalog": {{ site.data.conference_catalog | jsonify }},
+  "data": {{ site.data.conferences | jsonify }}
+}
 </script>
 <script src="{{ site.baseurl }}/assets/js/conferences.js"></script>

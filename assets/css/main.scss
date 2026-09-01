@@ -14,6 +14,60 @@
     "starsnonscss"
 ;
 
+a {
+	transition: none;
+}
+
+@media (hover: none) {
+	a:hover,
+	a:focus {
+		color: #00ab6b;
+		text-decoration: none;
+	}
+
+	.navbar .nav-link:hover,
+	.navbar .nav-link:focus {
+		color: inherit;
+	}
+}
+
+.pub-venue-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin: 0 0 1.5rem;
+}
+
+.pub-venue-btn {
+	display: inline-block;
+	border: 1px solid #00ab6b;
+	background: #00ab6b;
+	color: #fff;
+	border-radius: 0.35rem;
+	padding: 0.45rem 1rem;
+	font-size: 0.95rem;
+	font-weight: 700;
+}
+
+.pub-venue-btn:hover,
+.pub-venue-btn:focus {
+	color: #fff;
+	background: #00ab6b;
+	text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pub-venue-btn:hover {
+		background: #038252;
+		border-color: #038252;
+		color: #fff;
+	}
+}
+
+.article-post .pub-venue-links {
+	text-align: left;
+}
+
 .conf-source {
 	color: rgba(0, 0, 0, 0.6);
 	margin-bottom: 1.25rem;

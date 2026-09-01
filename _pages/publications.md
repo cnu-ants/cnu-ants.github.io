@@ -5,6 +5,11 @@ permalink: /publications
 comments: false
 ---
 
+<div class="pub-venue-links">
+  <a class="pub-venue-btn" href="{{ site.baseurl }}/conferences">Conferences-info</a>
+  <a class="pub-venue-btn" href="{{ site.baseurl }}/journals">Journal-info</a>
+</div>
+
 {% assign range = (1..6) %}
 
 {% assign all_members_eng = site.members | map: "name" | compact %}
