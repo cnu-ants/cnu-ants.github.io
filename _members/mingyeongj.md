@@ -18,10 +18,9 @@ interests:
   - Static analysis
   - Program testing
   - Type System
-edu: [
-[Chungnam National University, M.S. Department of Computer Science and Engineering, 03.2025 - present, "Advisor: Sungho Lee"],
-[Chungnam National University, B.S. Department of Computer Science and Engineering, 03.2021 - 02.2025]
-]
+edu:
+  - [Chungnam National University, M.S. Computer Science and Engineering, 03.2025 - present, "Advisor: Sungho Lee"]
+  - [Chungnam National University, B.S. Computer Science and Engineering, 03.2021 - 02.2025]
 awards: [
 [한국정보과학회(KCC), 학부생부문 최우수상, 2024],
 [한국정보과학회(KSC), 우수논문상, 2025],
