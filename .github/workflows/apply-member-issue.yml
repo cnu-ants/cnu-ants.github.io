@@ -2,7 +2,7 @@ name: Apply member profile issue
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 concurrency:
   group: member-profile-main
@@ -14,7 +14,13 @@ permissions:
 
 jobs:
   apply:
-    if: contains(github.event.issue.labels.*.name, 'member-profile') && github.event.issue.user.type == 'User'
+    if: >
+      github.event.issue.user.type == 'User' &&
+      (
+        (github.event.action == 'opened' &&
+          contains(join(github.event.issue.labels.*.name, ','), 'member-profile')) ||
+        (github.event.action == 'labeled' && github.event.label.name == 'member-profile')
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
