@@ -29,6 +29,21 @@ a {
 	.navbar .nav-link:focus {
 		color: inherit;
 	}
+
+	.pub-venue-btn:hover,
+	.pub-venue-btn:focus {
+		background: #00ab6b;
+		border-color: #00ab6b;
+		color: #fff;
+		box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+	}
+
+	.pub-venue-btn:active {
+		background: #038252;
+		border-color: #038252;
+		color: #fff;
+		box-shadow: 0 2px 8px rgba(0, 171, 107, 0.24);
+	}
 }
 
 .pub-venue-links {
@@ -43,24 +58,33 @@ a {
 	border: 1px solid #00ab6b;
 	background: #00ab6b;
 	color: #fff;
-	border-radius: 0.35rem;
-	padding: 0.45rem 1rem;
+	border-radius: 999px;
+	padding: 0.5rem 1.25rem;
 	font-size: 0.95rem;
 	font-weight: 700;
+	text-decoration: none;
+	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .pub-venue-btn:hover,
 .pub-venue-btn:focus {
 	color: #fff;
-	background: #00ab6b;
+	background: #038252;
+	border-color: #038252;
 	text-decoration: none;
+	box-shadow: 0 4px 12px rgba(0, 171, 107, 0.28);
 }
 
 @media (hover: hover) and (pointer: fine) {
+	.pub-venue-btn {
+		transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+
 	.pub-venue-btn:hover {
 		background: #038252;
 		border-color: #038252;
 		color: #fff;
+		box-shadow: 0 4px 12px rgba(0, 171, 107, 0.28);
 	}
 }
 
