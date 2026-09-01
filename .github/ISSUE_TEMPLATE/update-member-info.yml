@@ -1,0 +1,147 @@
+name: 멤버 정보 수정
+description: 이미 올라가 있는 정보를 고치거나 최신으로 바꾸고 싶을 때 사용합니다.
+title: "[Member] Update info: "
+labels: ["member-profile"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        홈페이지에 **이미 있는** 정보를 수정해 주세요.
+        바꾸고 싶은 칸만 채우면 됩니다. 비워 둔 칸은 그대로 둡니다.
+        Publications는 `_papers`에서 자동으로 붙으니 여기에 적지 마세요.
+
+  - type: input
+    id: name
+    attributes:
+      label: 이름 (English)
+      placeholder: Soyeon Baek
+    validations:
+      required: true
+
+  - type: input
+    id: name_kor
+    attributes:
+      label: 이름 (한글)
+      placeholder: 백소연
+    validations:
+      required: true
+
+  - type: input
+    id: member_url
+    attributes:
+      label: 멤버 페이지 주소
+      description: 예) https://cnu-ants.github.io/members/soyeonb
+      placeholder: https://cnu-ants.github.io/members/
+
+  - type: checkboxes
+    id: update_fields
+    attributes:
+      label: 수정할 항목
+      description: 이번에 바꾸고 싶은 항목만 고르세요.
+      options:
+        - label: 이메일
+        - label: 직함 / 소속 상태
+        - label: GitHub
+        - label: LinkedIn
+        - label: 관심 분야 (Research interests)
+        - label: 짧은 소개
+        - label: 학력 (Education)
+        - label: 경력 / 인턴
+        - label: 수상 (Honors)
+        - label: 개인 홈페이지
+        - label: Google Scholar
+        - label: 프로필 사진
+        - label: 기타
+
+  - type: input
+    id: email
+    attributes:
+      label: 이메일
+      placeholder: name@o.cnu.ac.kr
+
+  - type: dropdown
+    id: position
+    attributes:
+      label: 직함
+      options:
+        - 변경 없음
+        - B.S. Student
+        - Intern
+        - M.S. Student
+        - Integrated MS & Ph.D. student
+        - Ph.D. Student
+        - M.S. Student (part)
+        - Ph.D. Student (part)
+        - Alumni (M.S.)
+        - Alumni (Ph.D.)
+        - 기타 (아래 메모에 적어 주세요)
+
+  - type: input
+    id: github
+    attributes:
+      label: GitHub
+      placeholder: https://github.com/username
+
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn
+      placeholder: https://www.linkedin.com/in/username
+
+  - type: input
+    id: homepage
+    attributes:
+      label: 개인 홈페이지
+      placeholder: https://
+
+  - type: input
+    id: scholar
+    attributes:
+      label: Google Scholar
+      placeholder: https://scholar.google.com/citations?user=
+
+  - type: textarea
+    id: interests
+    attributes:
+      label: 관심 분야
+      description: 쉼표로 구분해 주세요. 적으면 기존 관심 분야를 이 내용으로 바꿉니다.
+      placeholder: static analysis, Android, binary analysis
+
+  - type: textarea
+    id: introduction
+    attributes:
+      label: 짧은 소개
+      description: 적으면 기존 소개를 이 내용으로 바꿉니다.
+      placeholder: I am an M.S. student in the ANTS lab...
+
+  - type: textarea
+    id: edu
+    attributes:
+      label: 학력
+      description: 최근 순서로, 한 줄에 하나씩. 적으면 기존 학력을 이 목록으로 바꿉니다.
+      placeholder: |
+        Chungnam National University, M.S. Department of Computer Science and Engineering, 03.2024 - present, Advisor: Sungho Lee
+        Chungnam National University, B.S. Department of Computer Science and Engineering, 03.2020 - 02.2024
+
+  - type: textarea
+    id: exps
+    attributes:
+      label: 경력 / 인턴
+      description: 최근 순서로, 한 줄에 하나씩. 적으면 기존 경력을 이 목록으로 바꿉니다.
+      placeholder: |
+        NAVER, Software Engineering Intern, 07.2024 - 08.2024
+
+  - type: textarea
+    id: awards
+    attributes:
+      label: 수상
+      description: 최근 순서로, 한 줄에 하나씩. 적으면 기존 수상을 이 목록으로 바꿉니다.
+      placeholder: |
+        한국정보과학회(KSC), 우수발표논문상, 2024
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 관리자에게 남길 말
+      description: 일부만 고치거나, 삭제하고 싶은 항목이 있으면 여기에 적어 주세요.
+      placeholder: LinkedIn만 바꾸고, 학력은 그대로 두어 주세요.

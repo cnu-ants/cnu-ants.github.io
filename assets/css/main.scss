@@ -44,6 +44,20 @@ a {
 		color: #fff;
 		box-shadow: 0 2px 8px rgba(0, 171, 107, 0.24);
 	}
+
+	.member-edit-btn:hover,
+	.member-edit-btn:focus {
+		background: #fff;
+		border-color: #fff;
+		color: #42A8C0;
+		box-shadow: none;
+	}
+
+	.member-edit-btn:active {
+		background: rgba(255, 255, 255, 0.18);
+		border-color: #fff;
+		color: #fff;
+	}
 }
 
 .pub-venue-links {
@@ -90,6 +104,50 @@ a {
 
 .article-post .pub-venue-links {
 	text-align: left;
+}
+
+.member-edit-block {
+	padding-top: 0;
+}
+
+.member-edit-btn {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid #fff;
+	background: #fff;
+	color: #42A8C0;
+	border-radius: 999px;
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.sidebar-wrapper .member-edit-btn {
+	color: #42A8C0;
+}
+
+.member-edit-btn:hover,
+.member-edit-btn:focus {
+	background: rgba(255, 255, 255, 0.16);
+	border-color: #fff;
+	color: #fff;
+	text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.member-edit-btn {
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+
+	.member-edit-btn:hover {
+		background: rgba(255, 255, 255, 0.16);
+		border-color: #fff;
+		color: #fff;
+		text-decoration: none;
+	}
 }
 
 .conf-source {
