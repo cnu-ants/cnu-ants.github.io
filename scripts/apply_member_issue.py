@@ -571,7 +571,7 @@ def build_comment(ok: bool, path: Path | None, applied: list[str], skipped: list
     if not ok:
         return "자동 반영을 건너뛰었습니다.\n\n" + message
     lines = [
-        f"`{path.name}`에 아래 항목을 반영하고 `main`에 푸시했습니다.",
+        f"Jekyll 빌드가 성공해 `{path.name}` 변경을 `main`에 푸시했습니다.",
         "",
         format_notes([f"반영: {item}" for item in applied]),
     ]
@@ -633,11 +633,19 @@ def process_issue(issue: dict[str, Any], members_dir: Path) -> tuple[bool, str, 
     return True, comment, path
 
 
+def write_success_comment(body: str) -> None:
+    path = os.environ.get("MEMBER_APPLY_COMMENT")
+    if path:
+        Path(path).write_text(body, encoding="utf-8")
+        return
+    sys.stderr.write(body + "\n")
+
+
 def run(issue_json: Path, members_dir: Path) -> int:
     issue = json.loads(issue_json.read_text(encoding="utf-8"))
     try:
         _changed, comment, _path = process_issue(issue, members_dir)
-        post_issue_comment(comment)
+        write_success_comment(comment)
         return 0
     except Rejected as error:
         post_issue_comment(build_comment(False, None, [], [], str(error)))
