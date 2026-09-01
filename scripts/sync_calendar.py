@@ -146,13 +146,14 @@ def load_credentials():
         if local.exists():
             raw = local.read_text(encoding="utf-8")
     if not raw:
-        return None
+        return None, None
     info = json.loads(raw)
     from google.oauth2 import service_account
 
-    return service_account.Credentials.from_service_account_info(
+    credentials = service_account.Credentials.from_service_account_info(
         info, scopes=["https://www.googleapis.com/auth/calendar"]
     )
+    return credentials, info.get("client_email")
 
 
 def calendar_service(credentials):
@@ -248,7 +249,7 @@ def main():
         )
     )
 
-    credentials = load_credentials()
+    credentials, service_email = load_credentials()
     if credentials is None:
         if dry_run:
             for body in desired:
@@ -261,14 +262,17 @@ def main():
         )
         sys.exit(2)
 
+    print(json.dumps({"service_account": service_email}, ensure_ascii=False))
     service = calendar_service(credentials)
     try:
         meta = service.calendars().get(calendarId=calendar_id).execute()
     except Exception as exc:
         sys.stderr.write(
-            "Cannot write to %s (%s). "
-            "Confirm the calendar is shared with the service account "
-            "as 'Make changes to events'.\n" % (calendar_id, exc)
+            "Cannot write to the ANTS calendar as %s.\n"
+            "GCP IAM Owner/Editor is not enough. In Google Calendar, open ANTS → "
+            "Settings and sharing → Share with specific people → add %s "
+            "with 'Make changes to events'.\n"
+            "API error: %s\n" % (service_email, service_email, exc)
         )
         sys.exit(2)
 
