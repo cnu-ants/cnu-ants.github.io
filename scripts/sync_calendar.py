@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upsert upcoming conference deadlines onto the ANTS Google Calendar."""
+"""Upsert upcoming conference deadlines onto the ANTS Conference Google Calendar."""
 
 from __future__ import annotations
 
@@ -19,7 +19,8 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "_data" / "conferences.yml"
-DEFAULT_CALENDAR_ID = (
+DEFAULT_CALENDAR_ID = "ants.cnu@gmail.com"
+LEGACY_CALENDAR_ID = (
     "04e8b4748a864cc0420d48d1c278162e6860e05e3d08fac783d0b7470b4b8093"
     "@group.calendar.google.com"
 )
@@ -236,6 +237,21 @@ def sync(service, calendar_id, desired, now, dry_run=False):
     }
 
 
+def purge_managed_events(service, calendar_id, dry_run=False):
+    existing = list_managed_events(service, calendar_id)
+    deleted = 0
+    for item in existing:
+        event_id = item.get("id")
+        if not event_id:
+            continue
+        if dry_run:
+            print("purge\t%s\t%s" % (item.get("start"), item.get("summary")))
+            continue
+        service.events().delete(calendarId=calendar_id, eventId=event_id).execute()
+        deleted += 1
+    return deleted
+
+
 def main():
     calendar_id = os.environ.get("GOOGLE_CALENDAR_ID", DEFAULT_CALENDAR_ID)
     dry_run = "--dry-run" in sys.argv or os.environ.get("DRY_RUN") == "1"
@@ -257,8 +273,9 @@ def main():
             return
         sys.stderr.write(
             "GOOGLE_CALENDAR_CREDENTIALS is not set. "
-            "Share the ANTS calendar with a Google service account "
-            "(Make changes to events), then add the JSON key as that secret.\n"
+            "Share the ANTS Conference calendar (ants.cnu@gmail.com) with a "
+            "Google service account (Make changes to events), then add the "
+            "JSON key as that secret.\n"
         )
         sys.exit(2)
 
@@ -268,17 +285,41 @@ def main():
         meta = service.calendars().get(calendarId=calendar_id).execute()
     except Exception as exc:
         sys.stderr.write(
-            "Cannot write to the ANTS calendar as %s.\n"
-            "GCP IAM Owner/Editor is not enough. In Google Calendar, open ANTS → "
-            "Settings and sharing → Share with specific people → add %s "
-            "with 'Make changes to events'.\n"
+            "Cannot write to the ANTS Conference calendar as %s.\n"
+            "GCP IAM Owner/Editor is not enough. In Google Calendar, open "
+            "ANTS Conference → Settings and sharing → Share with specific "
+            "people → add %s with 'Make changes to events'.\n"
             "API error: %s\n" % (service_email, service_email, exc)
         )
         sys.exit(2)
 
-    print(json.dumps({"calendar_summary": meta.get("summary")}, ensure_ascii=False))
+    print(
+        json.dumps(
+            {
+                "calendar_summary": meta.get("summary"),
+                "calendar_id": meta.get("id") or calendar_id,
+            },
+            ensure_ascii=False,
+        )
+    )
     result = sync(service, calendar_id, desired, now, dry_run=dry_run)
     print(json.dumps(result, ensure_ascii=False))
+
+    purge_id = os.environ.get("GOOGLE_CALENDAR_PURGE_ID", LEGACY_CALENDAR_ID).strip()
+    if purge_id and purge_id != calendar_id:
+        try:
+            purged = purge_managed_events(service, purge_id, dry_run=dry_run)
+            print(
+                json.dumps(
+                    {"purged_calendar_id": purge_id, "purged": purged},
+                    ensure_ascii=False,
+                )
+            )
+        except Exception as exc:
+            sys.stderr.write(
+                "Could not remove managed deadlines from the old calendar %s: %s\n"
+                % (purge_id, exc)
+            )
 
 
 if __name__ == "__main__":
