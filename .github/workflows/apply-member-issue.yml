@@ -1,0 +1,65 @@
+name: Apply member profile issue
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: member-profile-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  apply:
+    if: contains(github.event.issue.labels.*.name, 'member-profile') && github.event.issue.user.type == 'User'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Write issue payload
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            fs.writeFileSync(`${process.env.RUNNER_TEMP}/issue.json`, JSON.stringify({
+              number: context.issue.number,
+              title: context.payload.issue.title,
+              body: context.payload.issue.body,
+              user: context.payload.issue.user.login,
+            }));
+
+      - name: Apply member issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python scripts/apply_member_issue.py --issue-json "$RUNNER_TEMP/issue.json"
+
+      - name: Commit and push if the member file changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _members/*.md
+          if git diff --staged --quiet; then
+            echo "No member file changes"
+            exit 0
+          fi
+          git commit -m "Apply member profile from #${{ github.event.issue.number }}"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "${{ github.event.repository.default_branch }}" && git push && exit 0
+            sleep 5
+          done
+          echo "Push failed after retries"
+          exit 1

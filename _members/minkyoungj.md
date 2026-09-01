@@ -12,6 +12,7 @@ permalink: /members/minkyoungj
 image: assets/images/minkyoungj.jpg
 startdate: 202503
 office: "W2 #502"
+github: Jeongmingyeong
 awards: [
 [한국정보과학회(KCC), 학부생부문 최우수상, 2024],
 [한국정보과학회(KSC), 우수논문상, 2025],

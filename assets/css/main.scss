@@ -102,8 +102,26 @@ a {
 	}
 }
 
-.article-post .pub-venue-links {
-	text-align: left;
+.member-interests {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin: 0 0 1rem;
+	padding: 0;
+	list-style: none;
+}
+
+.member-interests li {
+	border: 1px solid #68bacd;
+	color: #2d7788;
+	border-radius: 999px;
+	padding: 0.2rem 0.75rem;
+	font-size: 0.9rem;
+}
+
+.sidebar-wrapper .contact-list li.link svg {
+	margin-right: 5px;
+	vertical-align: middle;
 }
 
 .member-edit-block {

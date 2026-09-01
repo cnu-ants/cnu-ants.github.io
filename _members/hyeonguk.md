@@ -12,4 +12,5 @@ permalink: /members/hyeonguk
 image: assets/images/hyeonguk.jpg
 startdate: 202603
 office: "W2 #502"
+github: hyeon-ggu
 ---

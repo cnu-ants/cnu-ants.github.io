@@ -12,4 +12,5 @@ permalink: /members/sungminb
 image: assets/images/sungminb.jpg
 startdate: 202603
 office: "W2 #502"
+github: chopinballadeno4
 ---

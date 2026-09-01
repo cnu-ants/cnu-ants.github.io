@@ -10,6 +10,8 @@ body:
         비워 둔 칸은 반영하지 않습니다. Publications는 `_papers`에서 자동으로 붙으니 여기에 적지 마세요.
         사진은 이 이슈 하단에 파일로 첨부해 주세요.
 
+        이슈 작성자의 GitHub 아이디가 본인 멤버 파일의 `github:`와 같고, 아래 이름이 그 프로필과 같으면 텍스트/링크는 자동으로 `main`에 반영됩니다. GitHub 아이디와 사진은 관리자가 넣습니다.
+
   - type: input
     id: name
     attributes:
@@ -54,6 +56,7 @@ body:
     id: github
     attributes:
       label: GitHub
+      description: 본인 아이디 확인용입니다. 아이디 자체는 관리자가 멤버 파일에 연결합니다.
       placeholder: https://github.com/username
 
   - type: input

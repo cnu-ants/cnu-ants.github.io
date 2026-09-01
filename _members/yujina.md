@@ -12,4 +12,5 @@ permalink: /members/yujinan
 image: assets/images/yujina.jpg
 startdate: 202503
 office: "W2 #502"
+github: Yujinmon
 ---

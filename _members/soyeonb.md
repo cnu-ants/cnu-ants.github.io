@@ -12,6 +12,7 @@ image: assets/images/soyeonb.jpg
 permalink: /members/soyeonb
 startdate: 202303
 office: "W2 502"
+github: SoyeonBaek
 awards: [
 [한국정보과학회(KSC), 우수발표논문상, 2024],]
 ---

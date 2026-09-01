@@ -10,6 +10,7 @@ position-display: Associate Professor
 permalink: /members/sunghol
 office: "W2 523"
 phone: 042-821-5445
+github: SunghoLee
 edu: [
 [KAIST, Ph.D. School of Computing, 03.2014 - 02.2020, "Advisor: Sukyoung Ryu"],
 [KAIST, M.S. Department of Computer Science, 02.2012 - 02.2014, "Advisor: Taisook Han"],

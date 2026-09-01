@@ -12,4 +12,5 @@ permalink: /members/kyungmink
 image: assets/images/kyungmink.jpg
 startdate: 202603
 office: "W2 #502"
+github: MGPOCKY
 ---
