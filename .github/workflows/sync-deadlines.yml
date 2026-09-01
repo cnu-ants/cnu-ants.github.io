@@ -1,4 +1,4 @@
-name: Sync conference deadlines
+name: Sync conferences and journals
 
 on:
   schedule:
@@ -30,15 +30,25 @@ jobs:
       - name: Sync deadlines from CCF Deadlines
         run: python scripts/sync_deadlines.py
 
+      - name: Sync journals from OpenAlex (weekly)
+        env:
+          OPENALEX_MAILTO: ants.cnu@gmail.com
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$(date -u +%u)" = "1" ]; then
+            python scripts/sync_journals.py
+          else
+            echo "Skipping journal sync (runs Mondays 06:00 UTC, or on workflow_dispatch)"
+          fi
+
       - name: Commit and push if data changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _data/conferences.yml
+          git add _data/conferences.yml _data/journals.yml
           if git diff --staged --quiet; then
-            echo "No deadline changes"
+            echo "No conference or journal changes"
           else
-            git commit -m "Sync conference deadlines from CCF Deadlines"
+            git commit -m "Sync conference and journal data"
             git push
           fi
 

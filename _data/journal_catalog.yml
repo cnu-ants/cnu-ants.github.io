@@ -1,0 +1,128 @@
+# Lab-owned metadata. Metrics are filled in by scripts/sync_journals.py from OpenAlex.
+# International journals only. CCF ranks follow the 2026 recommended journal list.
+# issn is the lookup key for OpenAlex (ISSN-L preferred).
+
+tags:
+  - id: SE
+    name: Software Engineering
+  - id: PL
+    name: Programming Languages
+  - id: SEC
+    name: Security
+
+journals:
+  # --- SE ---
+  - title: TSE
+    issn: "0098-5589"
+    tags: [SE]
+    ccf: A
+    homepage: https://www.computer.org/csdl/journal/ts
+  - title: TOSEM
+    issn: "1049-331X"
+    tags: [SE]
+    ccf: A
+    homepage: https://dl.acm.org/journal/tosem
+  - title: ASE
+    issn: "0928-8910"
+    tags: [SE]
+    ccf: B
+    homepage: https://link.springer.com/journal/10515
+  - title: EMSE
+    issn: "1382-3256"
+    tags: [SE]
+    ccf: B
+    homepage: https://link.springer.com/journal/10664
+  - title: IST
+    issn: "0950-5849"
+    tags: [SE]
+    ccf: B
+    homepage: https://www.sciencedirect.com/journal/information-and-software-technology
+  - title: JSS
+    issn: "0164-1212"
+    tags: [SE]
+    ccf: B
+    homepage: https://www.sciencedirect.com/journal/journal-of-systems-and-software
+  - title: SCP
+    issn: "0167-6423"
+    tags: [SE]
+    ccf: B
+    homepage: https://www.sciencedirect.com/journal/science-of-computer-programming
+  - title: SPE
+    issn: "0038-0644"
+    tags: [SE]
+    ccf: B
+    homepage: https://onlinelibrary.wiley.com/journal/1097024x
+  - title: STVR
+    issn: "0960-0833"
+    tags: [SE]
+    ccf: B
+    homepage: https://onlinelibrary.wiley.com/journal/1099166x
+  - title: SoSyM
+    issn: "1619-1366"
+    tags: [SE]
+    ccf: B
+    homepage: https://link.springer.com/journal/10270
+  - title: JSEP
+    issn: "2047-7481"
+    tags: [SE]
+    ccf: B
+    homepage: https://onlinelibrary.wiley.com/journal/20477481
+  - title: SQJ
+    issn: "0963-9314"
+    tags: [SE]
+    ccf: C
+    homepage: https://link.springer.com/journal/11219
+  - title: STTT
+    issn: "1433-2779"
+    tags: [SE]
+    ccf: C
+    homepage: https://link.springer.com/journal/10009
+  - title: SoftwareX
+    issn: "2352-7110"
+    tags: [SE]
+    ccf:
+    homepage: https://www.sciencedirect.com/journal/softwarex
+
+  # --- PL ---
+  - title: TOPLAS
+    issn: "0164-0925"
+    tags: [PL]
+    ccf: A
+    homepage: https://dl.acm.org/journal/toplas
+  - title: JFP
+    issn: "0956-7968"
+    tags: [PL]
+    ccf: B
+    homepage: https://www.cambridge.org/core/journals/journal-of-functional-programming
+  - title: PACMPL
+    issn: "2475-1421"
+    tags: [PL]
+    ccf: C
+    homepage: https://dl.acm.org/journal/pacmpl
+
+  # --- SEC ---
+  - title: TDSC
+    issn: "1545-5971"
+    tags: [SEC]
+    ccf: A
+    homepage: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8858
+  - title: TIFS
+    issn: "1556-6013"
+    tags: [SEC]
+    ccf: A
+    homepage: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=10206
+  - title: TOPS
+    issn: "2471-2566"
+    tags: [SEC]
+    ccf: B
+    homepage: https://dl.acm.org/journal/tops
+  - title: CompSec
+    issn: "0167-4048"
+    tags: [SEC]
+    ccf: B
+    homepage: https://www.sciencedirect.com/journal/computers-and-security
+  - title: JCS
+    issn: "0926-227X"
+    tags: [SEC]
+    ccf: B
+    homepage: https://www.iospress.com/catalog/journals/journal-of-computer-security

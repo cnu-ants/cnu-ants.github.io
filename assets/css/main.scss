@@ -155,6 +155,31 @@
 	font-weight: 600;
 }
 
+.journal-ccf {
+	flex: 0 0 auto;
+	min-width: 5.5rem;
+	text-align: right;
+	font-weight: 700;
+	align-self: center;
+	color: rgba(0, 0, 0, 0.45);
+}
+
+.journal-ccf.is-A {
+	color: #00ab6b;
+}
+
+.journal-ccf.is-B {
+	color: #2b6cb0;
+}
+
+.journal-ccf.is-C {
+	color: #6f42c1;
+}
+
+.journal-links a {
+	font-weight: 600;
+}
+
 .conf-empty {
 	color: rgba(0, 0, 0, 0.5);
 }
@@ -164,7 +189,8 @@
 		flex-direction: column;
 	}
 
-	.conf-remaining {
+	.conf-remaining,
+	.journal-ccf {
 		text-align: left;
 		min-width: 0;
 	}

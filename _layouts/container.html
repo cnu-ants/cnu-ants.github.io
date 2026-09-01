@@ -129,6 +129,26 @@
               >
             </li>
 
+            {% if page.url == "/conferences" %}
+            <li class="nav-item active">{% else %}</li>
+
+            <li class="nav-item">
+              {% endif %}
+              <a class="nav-link" href="{{ site.baseurl }}/conferences"
+                >Conferences</a
+              >
+            </li>
+
+            {% if page.url == "/journals" %}
+            <li class="nav-item active">{% else %}</li>
+
+            <li class="nav-item">
+              {% endif %}
+              <a class="nav-link" href="{{ site.baseurl }}/journals"
+                >Journals</a
+              >
+            </li>
+
             {% if page.url == "/lectures" %}
             <li class="nav-item active">{% else %}</li>
 

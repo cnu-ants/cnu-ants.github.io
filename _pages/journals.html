@@ -1,0 +1,51 @@
+---
+layout: page
+title: Journals
+permalink: /journals
+comments: false
+---
+
+<p class="conf-source">
+  Last update: <time id="journal-updated">—</time>.
+  Metrics are synced from
+  <a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a>
+  and are not Clarivate Journal Impact Factors.
+</p>
+
+<div class="conf-legend">
+  <table>
+    <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tag in site.data.journal_catalog.tags %}
+      <tr>
+        <td><span class="conf-tag conf-tag-{{ tag.id }}">{{ tag.id }}</span></td>
+        <td>{{ tag.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul>
+    <li>CCF — A / B / C (2026 recommended journals)</li>
+    <li>OpenAlex citedness — 2-year mean citedness, not JCR IF</li>
+    <li>Regular issues are continuous submission</li>
+  </ul>
+</div>
+
+<div class="conf-filters" id="journal-filters"></div>
+
+<section class="conf-section">
+  <div id="journal-list"></div>
+</section>
+
+<script id="journal-payload" type="application/json">
+{
+  "catalog": {{ site.data.journal_catalog | jsonify }},
+  "data": {{ site.data.journals | jsonify }}
+}
+</script>
+<script src="{{ site.baseurl }}/assets/js/journals.js"></script>
