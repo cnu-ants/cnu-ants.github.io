@@ -12,4 +12,5 @@ permalink: /members/hojungc
 image: assets/images/hojungc.jpg
 startdate: 202605
 office: "W2 #502"
+github: OrElOr
 ---

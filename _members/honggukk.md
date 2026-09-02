@@ -12,4 +12,5 @@ permalink: /members/honggukk
 image: assets/images/honggukk.jpg
 startdate: 202603
 office: "W2 #502"
+github: ijwino
 ---
