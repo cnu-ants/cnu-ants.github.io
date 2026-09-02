@@ -17,7 +17,7 @@ linkedin: "https://www.linkedin.com/in/mgpocky/"
 interests:
   - Static Analysis
   - Automated Testing
-introduction: "I am currently pursuing a Master's degree at Chungnam National University under the supervision of Professor Sungho Lee. My research focuses on automated software testing. I have previously worked on analyzing GitHub Actions, and my current research explores techniques for generating effective inputs for fuzzing."
+introduction: "I am currently pursuing a Master's degree at Chungnam National University under the supervision of Professor Sungho Lee. My research focuses on automated software testing. I have previously worked on analyzing GitHub Actions on real-world, and my current research explores techniques for generating effective inputs for fuzzing."
 exps:
   - [HayanMind, Software Engineering Team, 2021.01 - 2023.10]
 awards:
