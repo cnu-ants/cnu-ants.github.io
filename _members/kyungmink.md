@@ -20,7 +20,7 @@ interests:
   - Automated Testing
 introduction: "I am currently pursuing a Master's degree at Chungnam National University under the supervision of Professor Sungho Lee. My research focuses on automated software testing. I have previously worked on analyzing GitHub Actions, and my current research explores techniques for generating effective inputs for fuzzing."
 exps:
-  - [Global Software Program (Qualcomm, UCSD), Program Participant, 12.2024 - 02.2025]
+  - [Global Software Program (Qualcomm - UCSD), Program Participant, 12.2024 - 02.2025]
   - [Global Internship (MI-333), Software Engineering Team, 07.2024 - 09.2024]
   - [HayanMind, Software Engineering Team, 01.2021 - 10.2023]
 awards:
