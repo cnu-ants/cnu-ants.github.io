@@ -170,16 +170,12 @@ def strip_simple_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text).strip()
 
 
-def detect_mode(title: str, fields: dict[str, str]) -> str:
-    if title.startswith("[Member] Add info:"):
-        return "add"
-    if title.startswith("[Member] Update info:"):
-        return "update"
-    if "추가할 항목" in fields:
-        return "add"
+def checkbox_section(fields: dict[str, str]) -> str | None:
     if "수정할 항목" in fields:
-        return "update"
-    raise Rejected("멤버 정보 추가/수정 템플릿으로 열린 이슈가 아닙니다.")
+        return fields.get("수정할 항목")
+    if "추가할 항목" in fields:
+        return fields.get("추가할 항목")
+    return None
 
 
 def normalize_github(value: Any) -> str | None:
@@ -232,13 +228,16 @@ def split_front_matter(text: str) -> tuple[dict[str, Any], str]:
 def needs_quotes(text: str) -> bool:
     if text == "" or text.strip() != text:
         return True
-    if text.lower() in {"true", "false", "null", "yes", "no", "on", "off"}:
-        return True
     if text[0] in "-?:@`&*!|>%'\"{}[]":
         return True
     if any(ch in text for ch in ":#{}[],&*?|>%'\"@"):
         return True
-    return False
+    try:
+        loaded = yaml.safe_load(text)
+    except Exception:
+        return True
+    # Quote values YAML would otherwise treat as int/bool/null (e.g. 2024).
+    return loaded != text
 
 
 def dump_scalar(value: Any) -> str:
@@ -346,7 +345,9 @@ def patch_member_file(original: str, data: dict[str, Any], keys: list[str]) -> s
     patched = "---" + front_matter + "---" + rest
     parsed, _body = split_front_matter(patched)
     for key in keys:
-        if parsed.get(key) != data.get(key):
+        dumped = "\n".join(dump_key(key, data.get(key)))
+        expected = yaml.safe_load(dumped)
+        if not isinstance(expected, dict) or parsed.get(key) != expected.get(key):
             raise Rejected(f"{key} 값을 파일에 안전하게 쓰지 못했습니다.")
     return patched
 
@@ -457,16 +458,8 @@ def parse_interests(text: str) -> list[str]:
     return items
 
 
-def existing(data: dict[str, Any], key: str) -> bool:
-    value = data.get(key)
-    if value is None or value == "" or value == []:
-        return False
-    return True
-
-
 def apply_fields(
     data: dict[str, Any],
-    mode: str,
     fields: dict[str, str],
     checked: set[str],
     author: str,
@@ -479,9 +472,6 @@ def apply_fields(
     def maybe_set(field: str, label: str, value: Any) -> None:
         if field in IMMUTABLE_KEYS:
             skipped.append(f"{label}: 자동으로 바꾸지 않습니다.")
-            return
-        if mode == "add" and existing(updated, field):
-            skipped.append(f"{label}: 이미 값이 있어 추가 템플릿으로는 덮어쓰지 않았습니다.")
             return
         updated[field] = value
         applied.append(label)
@@ -513,9 +503,7 @@ def apply_fields(
         skipped.append("기타 요청은 자동 반영하지 않습니다. 관리자가 메모를 보고 처리합니다.")
 
     if "email" in wanted:
-        if mode != "update":
-            skipped.append("이메일은 수정 템플릿에서만 바꿀 수 있습니다.")
-        elif is_blank(fields.get("이메일")):
+        if is_blank(fields.get("이메일")):
             skipped.append("이메일을 선택했지만 값이 비어 있습니다.")
         else:
             email = strip_simple_html(fields["이메일"])
@@ -524,25 +512,19 @@ def apply_fields(
             maybe_set("email", "이메일", email)
 
     if "position" in wanted:
-        if mode != "update":
-            skipped.append("직함은 수정 템플릿에서만 바꿀 수 있습니다.")
+        position = strip_simple_html(fields.get("직함", ""))
+        if is_blank(position) or position in SKIP_POSITIONS:
+            skipped.append("직함을 선택했지만 변경 값이 없습니다.")
+        elif position not in POSITION_MAP:
+            skipped.append("직함 기타는 자동 반영하지 않습니다. 관리자가 메모를 보고 처리합니다.")
         else:
-            position = strip_simple_html(fields.get("직함", ""))
-            if is_blank(position) or position in SKIP_POSITIONS:
-                skipped.append("직함을 선택했지만 변경 값이 없습니다.")
-            elif position not in POSITION_MAP:
-                skipped.append("직함 기타는 자동 반영하지 않습니다. 관리자가 메모를 보고 처리합니다.")
-            else:
-                pos, display = POSITION_MAP[position]
-                if mode == "add" and existing(updated, "position-display"):
-                    skipped.append("직함: 이미 값이 있어 추가 템플릿으로는 덮어쓰지 않았습니다.")
-                else:
-                    updated["position"] = pos
-                    updated["position-display"] = display
-                    applied.append("직함")
-                    for key in ("position", "position-display"):
-                        if key not in changed_keys:
-                            changed_keys.append(key)
+            pos, display = POSITION_MAP[position]
+            updated["position"] = pos
+            updated["position-display"] = display
+            applied.append("직함")
+            for key in ("position", "position-display"):
+                if key not in changed_keys:
+                    changed_keys.append(key)
 
     if "linkedin" in wanted:
         if is_blank(fields.get("LinkedIn")):
@@ -669,11 +651,11 @@ def post_issue_comment(body: str) -> None:
 
 def process_issue(issue: dict[str, Any], members_dir: Path) -> tuple[bool, str, Path | None]:
     user = str(issue.get("user") or "").strip()
-    title = str(issue.get("title") or "")
     fields = parse_issue_body(issue.get("body"))
-    mode = detect_mode(title, fields)
-    checkbox_section = fields.get("추가할 항목") if mode == "add" else fields.get("수정할 항목")
-    checked = checked_labels(checkbox_section)
+    section = checkbox_section(fields)
+    if section is None:
+        raise Rejected("멤버 정보 수정 템플릿으로 열린 이슈가 아닙니다.")
+    checked = checked_labels(section)
     members = load_members(members_dir)
     path, data, body = find_member_by_github(members, user)
     resolved = path.resolve()
@@ -682,7 +664,7 @@ def process_issue(issue: dict[str, Any], members_dir: Path) -> tuple[bool, str, 
     assert_same_person(fields, data, path)
     original_github = data.get("github")
     original_permalink = data.get("permalink")
-    updated, applied, skipped, changed_keys = apply_fields(data, mode, fields, checked, user)
+    updated, applied, skipped, changed_keys = apply_fields(data, fields, checked, user)
     if updated.get("github") != original_github or updated.get("permalink") != original_permalink:
         raise Rejected("github 또는 permalink가 바뀌려 해서 중단했습니다.")
     roundtrip_ok(updated)
@@ -877,6 +859,67 @@ https://scholar.google.com/citations?user=abcdefghijk
         assert "체크하지 않아 반영하지 않았습니다" in comment
         assert "github: soyeonb" in text
         assert "최우수상" not in text
+
+    with tempfile.TemporaryDirectory() as tmp:
+        members_dir = Path(tmp)
+        sample = members_dir / "kyungmink.md"
+        sample.write_text(
+            "---\nlayout: resume\nname: Kyungmin Kim\nname_kor: 김경민\n"
+            "github: MGPOCKY\npermalink: /members/kyungmink\n---\n",
+            encoding="utf-8",
+        )
+        awards_body = """
+### 이름 (English)
+
+Kyungmin Kim
+
+### 이름 (한글)
+
+김경민
+
+### 멤버 페이지 주소
+
+https://cnu-ants.github.io/members/kyungmink
+
+### 수정할 항목
+
+- [x] 짧은 소개
+- [x] 경력 / 인턴
+- [x] 수상 (Honors)
+
+### 짧은 소개
+
+I am currently pursuing a Master's degree.
+
+### 경력 / 인턴
+
+HayanMind, Software Engineering Team, 2021.01 - 2023.10
+
+### 수상
+
+충남대학교 제 6회 SOGRA Hackathon, 대상, 2024
+충남대학교 제 11회 DevDay(코딩테스트), 금상, 2020
+충남대학교 제 10회 DevDay(코딩테스트), 금상, 2020
+"""
+        changed, _comment, path = process_issue(
+            {
+                "user": "MGPOCKY",
+                "title": "[Member] Update info: kyungmink",
+                "body": awards_body,
+            },
+            members_dir,
+        )
+        data, _body = split_front_matter(path.read_text(encoding="utf-8"))
+        assert changed and path == sample
+        assert data["awards"] == [
+            ["충남대학교 제 6회 SOGRA Hackathon", "대상", "2024"],
+            ["충남대학교 제 11회 DevDay(코딩테스트)", "금상", "2020"],
+            ["충남대학교 제 10회 DevDay(코딩테스트)", "금상", "2020"],
+        ]
+        assert data["exps"] == [
+            ["HayanMind", "Software Engineering Team", "2021.01 - 2023.10"]
+        ]
+        assert "Master" in data["introduction"]
 
     print("self-test ok")
 
