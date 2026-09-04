@@ -13,4 +13,9 @@ image: assets/images/honggukk.jpg
 startdate: 202603
 office: "W2 #502"
 github: ijwino
+interests:
+  - Static Analysis
+  - Programming Language
+edu:
+  - [Chungnam National University, B.S. in Computer Science and Engineering, 03. 2022 – Present]
 ---
