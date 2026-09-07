@@ -13,4 +13,6 @@ image: assets/images/arany.jpg
 startdate: 202609
 office: "W2 #502"
 github: uvrvuoon
+edu:
+  - [Chungnam National University, B.S. Department of Computer Science and Engineering, 09.2026 - present]
 ---
