@@ -71,6 +71,10 @@ p {
   font-weight: 900;
   margin-top: 0;
   margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+.sidebar-wrapper .name.is-long {
+  font-size: 24px;
 }
 .sidebar-wrapper .tagline {
   color: rgba(255, 255, 255, 0.6);
@@ -78,6 +82,9 @@ p {
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
+}
+.sidebar-wrapper .tagline.is-long {
+  font-size: 14px;
 }
 .sidebar-wrapper .affiliation{
   color: rgba(255, 255, 255, 0.6);
@@ -89,18 +96,51 @@ p {
 .sidebar-wrapper .profile {
   margin-bottom: 15px;
 }
-.sidebar-wrapper .contact-list .svg-inline--fa {
-  margin-right: 5px;
-  font-size: 18px;
-  vertical-align: middle;
-}
+/* Contact rows are laid out as [icon column][text column] so that a long
+   e-mail address or GitHub handle wraps inside its own column instead of
+   dropping under the icon or breaking in the middle of a word. */
 .sidebar-wrapper .contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 15px;
+  min-width: 0;
 }
 .sidebar-wrapper .contact-list li:last-child {
   margin-bottom: 0;
 }
+.sidebar-wrapper .contact-list li > svg {
+  flex: 0 0 16px;
+  width: 16px;
+  margin-right: 0;
+  margin-top: 3px;
+}
+.sidebar-wrapper .contact-list .svg-inline--fa {
+  font-size: 18px;
+}
 .sidebar-wrapper .contact-list .email .svg-inline--fa {
+  font-size: 14px;
+  margin-top: 4px;
+}
+.sidebar-wrapper .contact-list li > a,
+.sidebar-wrapper .contact-list li > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* screen.css sizes .profile-email for the 175px member cards on the Members
+   page; inside the sidebar the link must simply fill the text column. */
+.sidebar-wrapper .contact-list .profile-email {
+  inline-size: auto;
+  overflow: visible;
+  text-align: left;
+}
+/* Long values (set from the template by character count) step down a size
+   so they fit on one line where possible; otherwise they wrap at <wbr>. */
+.sidebar-wrapper .contact-list .is-long {
+  font-size: 13px;
+}
+.sidebar-wrapper .contact-list .github .is-long {
   font-size: 14px;
 }
 .sidebar-wrapper .container-block {
@@ -207,12 +247,20 @@ p {
 .main-wrapper .experiences-section .item {
   margin-bottom: 30px;
 }
+/* Title on the left, period on the right. The title owns the remaining
+   width and wraps inside it, so a long degree name can never run underneath
+   the period (which used to be absolutely positioned on top of it). */
 .main-wrapper .upper-row {
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 16px;
   margin-bottom: 2px;
 }
 .main-wrapper .job-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: #3F4650;
   font-size: 18px;
   margin-top: 3px;
@@ -220,10 +268,8 @@ p {
   font-weight: 500;
 }
 .main-wrapper .time {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
+  flex: 0 0 auto;
+  white-space: nowrap;
   color: #97AAC3;
 }
 .main-wrapper .company {
@@ -283,6 +329,18 @@ p {
   color: #fb866a;
 }
 
+/* Between the mobile breakpoint and the wrapper's 960px maximum the main
+   column is only ~400-450px wide: step the title row down one size so a
+   long degree name wraps to two lines rather than three. */
+@media (min-width: 768px) and (max-width: 959.98px) {
+  .main-wrapper .job-title {
+    font-size: 16px;
+  }
+
+  .main-wrapper .time {
+    font-size: 14px;
+  }
+}
 @media (max-width: 767.98px) {
   .sidebar-wrapper {
     position: static;
@@ -293,14 +351,14 @@ p {
     padding: 30px;
   }
 
-  .main-wrapper .time {
-    position: static;
+  .main-wrapper .upper-row {
     display: block;
-    margin-top: 5px;
+    margin-bottom: 0;
   }
 
-  .main-wrapper .upper-row {
-    margin-bottom: 0;
+  .main-wrapper .time {
+    white-space: normal;
+    margin-top: 5px;
   }
 }
 @media (min-width: 992px) {
