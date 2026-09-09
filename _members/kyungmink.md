@@ -30,4 +30,5 @@ awards:
 edu:
   - [Chungnam National University, M.S. Computer Science and Engineering, 03.2026 - Present, "Advisor: Sungho Lee"]
   - [Chungnam National University, B.S. Computer Science and Engineering, 03.2019 - 02.2026]
+homepage: "https://mgpocky.github.io/"
 ---
