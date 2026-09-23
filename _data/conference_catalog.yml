@@ -1,15 +1,21 @@
 # Lab-owned metadata. Deadlines are filled in by scripts/sync_deadlines.py.
-# Inclusion:
-#   1. 한국정보과학회 2024 우수학술대회 목록 중 소분야가 SE / PL / Sec 인 학회
+# Inclusion: 소분야가 SE / PL / Sec 이면서 아래 셋을 모두 만족하는 학회만 싣는다.
+#   1. 한국정보과학회 2024 우수학술대회 목록에 최우수 또는 우수로 등재
 #      (대응표: gist https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206)
-#   2. BK21 플러스 CS 우수국제학술대회 목록(2018) 중 위 목록에는 없지만
-#      SE / PL / Sec 에 해당하는 학회 (CSEET, ICLP, IJCAR, VEE, IFIP SEC, TCC)
-#   3. 그 밖에 연구실에서 직접 챙기는 학회 (SCAM, RV)
-# 아키텍처 / HPC / 임베디드로 분류되는 PPoPP, PACT, HiPEAC, EMSOFT, CASES, CODES는 제외.
-# BK21 목록의 SAC는 SIGAPP Applied Computing 으로 CCF Deadlines의 SAC(암호)와 다른 학회라 제외.
+#   2. BK21 플러스 CS 우수국제학술대회 목록(2018)에 인정 IF 등재
+#   3. CCF Deadlines(allconf.yml)에 등록되어 마감을 동기화할 수 있음
+# 따라서 kiise 와 bk21_if 는 모든 항목에 값이 있다. 둘 중 하나라도 비면 목록에서 뺀다.
+#
+# 제외 사례:
+#   - 두 목록 중 한쪽에만 있는 학회: FM, MSR, SANER, VMCAI, ACNS, CHES, CODASPY,
+#     EuroS&P, FSE(Fast Software Encryption), PKC, PETS, WiSec, IJCAR, VEE, IFIP SEC, TCC
+#   - CCF Deadlines에 없는 학회: FASE, CC, ESOP, TACAS, CSEET, ICLP
+#   - 아키텍처 / HPC / 임베디드로 분류되는 학회: PPoPP, PACT, HiPEAC, EMSOFT, CASES, CODES
+#   - BK21 목록의 SAC: SIGAPP Applied Computing 으로 CCF Deadlines의 SAC(암호)와 다른 학회
+#
 # Rank sources:
 #   kiise   — 한국정보과학회 2024 우수학술대회 (최우수 / 우수)
-#   bk21_if — BK21 플러스 CS 우수국제학술대회 IF (2018). 목록에 없으면 null → 페이지에 IF-
+#   bk21_if — BK21 플러스 CS 우수국제학술대회 IF (2018), 1~4
 #   core    — CCF Deadlines YAML의 CORE 값 (동기화 시 채워짐)
 #
 # ccfddl_title: CCF Deadlines의 title이 약자와 다를 때만 지정
@@ -45,16 +51,6 @@ conferences:
     kiise: 최우수
     bk21_if: 2
     ccfddl_sub: SE
-  - title: FASE
-    tags: [SE]
-    kiise: 우수
-    bk21_if: 1
-    ccfddl_sub: SE
-  - title: FM
-    tags: [SE]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SE
   - title: ICSME
     tags: [SE]
     kiise: 우수
@@ -86,35 +82,11 @@ conferences:
     bk21_if: 2
     ccfddl_title: MoDELS
     ccfddl_sub: SE
-  - title: MSR
-    tags: [SE]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SE
   - title: RE
     tags: [SE]
     kiise: 우수
     bk21_if: 2
     ccfddl_sub: SE
-  - title: SANER
-    tags: [SE]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SE
-  - title: SCAM
-    tags: [SE]
-    kiise:
-    bk21_if:
-    ccfddl_sub: SE
-  - title: RV
-    tags: [SE]
-    kiise:
-    bk21_if:
-    ccfddl_sub: SE
-  - title: CSEET
-    tags: [SE]
-    kiise:
-    bk21_if: 1
 
   # --- PL (정보과학회 CS PL) ---
   - title: CAV
@@ -147,10 +119,6 @@ conferences:
     kiise: 최우수
     bk21_if: 4
     ccfddl_sub: SE
-  - title: CC
-    tags: [PL]
-    kiise: 우수
-    bk21_if: 2
   - title: CGO
     tags: [PL]
     kiise: 우수
@@ -167,10 +135,6 @@ conferences:
     kiise: 우수
     bk21_if: 2
     ccfddl_sub: SE
-  - title: ESOP
-    tags: [PL]
-    kiise: 우수
-    bk21_if: 2
   - title: LCTES
     tags: [PL]
     kiise: 우수
@@ -181,29 +145,6 @@ conferences:
     kiise: 우수
     bk21_if: 1
     ccfddl_sub: SE
-  - title: TACAS
-    tags: [PL]
-    kiise: 우수
-    bk21_if: 2
-  - title: VMCAI
-    tags: [PL]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SE
-  - title: ICLP
-    tags: [PL]
-    kiise:
-    bk21_if: 1
-  - title: IJCAR
-    tags: [PL]
-    kiise:
-    bk21_if: 1
-    ccfddl_sub: CT
-  - title: VEE
-    tags: [PL]
-    kiise:
-    bk21_if: 1
-    ccfddl_sub: DS
 
   # --- SEC (정보과학회 CS Sec) ---
   - title: CCS
@@ -236,11 +177,6 @@ conferences:
     kiise: 최우수
     bk21_if: 3
     ccfddl_sub: SC
-  - title: ACNS
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SC
   - title: ACSAC
     tags: [SEC]
     kiise: 우수
@@ -255,16 +191,6 @@ conferences:
     tags: [SEC]
     kiise: 우수
     bk21_if: 2
-    ccfddl_sub: SC
-  - title: CHES
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SC
-  - title: CODASPY
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
     ccfddl_sub: SC
   - title: CSF
     tags: [SEC]
@@ -282,31 +208,10 @@ conferences:
     kiise: 우수
     bk21_if: 2
     ccfddl_sub: SC
-  - title: EuroS&P
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SC
   - title: FC
     tags: [SEC]
     kiise: 우수
     bk21_if: 1
-    ccfddl_sub: SC
-  - title: FSE (Crypto)
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_title: FSE
-    ccfddl_sub: SC
-  - title: PKC
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SC
-  - title: PETS
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
     ccfddl_sub: SC
   - title: RAID
     tags: [SEC]
@@ -316,21 +221,5 @@ conferences:
   - title: SOUPS
     tags: [SEC]
     kiise: 우수
-    bk21_if: 1
-    ccfddl_sub: SC
-  - title: WiSec
-    tags: [SEC]
-    kiise: 우수
-    bk21_if:
-    ccfddl_sub: SC
-  - title: IFIP SEC
-    tags: [SEC]
-    kiise:
-    bk21_if: 1
-    ccfddl_title: SEC
-    ccfddl_sub: SC
-  - title: TCC
-    tags: [SEC]
-    kiise:
     bk21_if: 1
     ccfddl_sub: SC
