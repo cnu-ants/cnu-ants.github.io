@@ -1,6 +1,12 @@
 # Lab-owned metadata. Deadlines are filled in by scripts/sync_deadlines.py.
-# Inclusion: gist https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206
-# 중 한국정보과학회 2024 소분야가 SE / PL / Sec 인 학회.
+# Inclusion:
+#   1. 한국정보과학회 2024 우수학술대회 목록 중 소분야가 SE / PL / Sec 인 학회
+#      (대응표: gist https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206)
+#   2. BK21 플러스 CS 우수국제학술대회 목록(2018) 중 위 목록에는 없지만
+#      SE / PL / Sec 에 해당하는 학회 (CSEET, ICLP, IJCAR, VEE, IFIP SEC, TCC)
+#   3. 그 밖에 연구실에서 직접 챙기는 학회 (SCAM, RV)
+# 아키텍처 / HPC / 임베디드로 분류되는 PPoPP, PACT, HiPEAC, EMSOFT, CASES, CODES는 제외.
+# BK21 목록의 SAC는 SIGAPP Applied Computing 으로 CCF Deadlines의 SAC(암호)와 다른 학회라 제외.
 # Rank sources:
 #   kiise   — 한국정보과학회 2024 우수학술대회 (최우수 / 우수)
 #   bk21_if — BK21 플러스 CS 우수국제학술대회 IF (2018). 목록에 없으면 null → 페이지에 IF-
@@ -105,6 +111,10 @@ conferences:
     kiise:
     bk21_if:
     ccfddl_sub: SE
+  - title: CSEET
+    tags: [SE]
+    kiise:
+    bk21_if: 1
 
   # --- PL (정보과학회 CS PL) ---
   - title: CAV
@@ -180,6 +190,20 @@ conferences:
     kiise: 우수
     bk21_if:
     ccfddl_sub: SE
+  - title: ICLP
+    tags: [PL]
+    kiise:
+    bk21_if: 1
+  - title: IJCAR
+    tags: [PL]
+    kiise:
+    bk21_if: 1
+    ccfddl_sub: CT
+  - title: VEE
+    tags: [PL]
+    kiise:
+    bk21_if: 1
+    ccfddl_sub: DS
 
   # --- SEC (정보과학회 CS Sec) ---
   - title: CCS
@@ -268,6 +292,12 @@ conferences:
     kiise: 우수
     bk21_if: 1
     ccfddl_sub: SC
+  - title: FSE (Crypto)
+    tags: [SEC]
+    kiise: 우수
+    bk21_if:
+    ccfddl_title: FSE
+    ccfddl_sub: SC
   - title: PKC
     tags: [SEC]
     kiise: 우수
@@ -292,4 +322,15 @@ conferences:
     tags: [SEC]
     kiise: 우수
     bk21_if:
+    ccfddl_sub: SC
+  - title: IFIP SEC
+    tags: [SEC]
+    kiise:
+    bk21_if: 1
+    ccfddl_title: SEC
+    ccfddl_sub: SC
+  - title: TCC
+    tags: [SEC]
+    kiise:
+    bk21_if: 1
     ccfddl_sub: SC

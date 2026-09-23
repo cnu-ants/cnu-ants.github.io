@@ -304,6 +304,15 @@ a {
 	font-weight: 600;
 }
 
+.conf-card.is-tbd .conf-remaining {
+	color: rgba(0, 0, 0, 0.4);
+	font-weight: 600;
+}
+
+.conf-card.is-tbd .conf-card-title h3 {
+	font-weight: 600;
+}
+
 .journal-ccf {
 	flex: 0 0 auto;
 	min-width: 5.5rem;

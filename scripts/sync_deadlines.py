@@ -94,6 +94,37 @@ def timeline_entries(conf_year):
     return rows
 
 
+def latest_link(source):
+    """Link of the most recent edition, used for TBD placeholder cards."""
+    confs = [c for c in (source.get("confs") or []) if c.get("link")]
+    if not confs:
+        return None
+    confs.sort(key=lambda c: c.get("year") or 0)
+    return confs[-1].get("link")
+
+
+def build_venues(catalog, allconf):
+    """One row per catalog entry, so the page can list venues with no known deadline."""
+    venues = []
+    for item in catalog.get("conferences") or []:
+        source = find_entry(allconf, item)
+        rank = (source or {}).get("rank") or {}
+        venues.append(
+            {
+                "title": item["title"],
+                "tags": item.get("tags") or [],
+                "kiise": item.get("kiise"),
+                "bk21_if": item.get("bk21_if"),
+                "core": rank.get("core"),
+                "description": (source or {}).get("description"),
+                "link": latest_link(source) if source else None,
+                "tracked": source is not None,
+            }
+        )
+    venues.sort(key=lambda row: str(row["title"]))
+    return venues
+
+
 def build_editions(catalog, allconf):
     editions = []
     missing = []
@@ -155,11 +186,14 @@ def main():
     catalog = load_yaml(CATALOG_PATH)
     allconf = fetch_ccfddl()
     editions, missing = build_editions(catalog, allconf)
+    venues = build_venues(catalog, allconf)
 
     if OUTPUT_PATH.exists():
         existing = load_yaml(OUTPUT_PATH) or {}
         if json.dumps(existing.get("editions"), sort_keys=True, default=str) == json.dumps(
             editions, sort_keys=True, default=str
+        ) and json.dumps(existing.get("venues"), sort_keys=True, default=str) == json.dumps(
+            venues, sort_keys=True, default=str
         ) and existing.get("missing") == missing:
             print(
                 json.dumps(
@@ -180,6 +214,7 @@ def main():
         .isoformat()
         .replace("+00:00", "Z"),
         "missing": missing,
+        "venues": venues,
         "editions": editions,
     }
     dump_yaml(payload, OUTPUT_PATH)

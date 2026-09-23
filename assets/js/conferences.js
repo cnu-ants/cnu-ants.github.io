@@ -148,6 +148,33 @@
     return rows;
   }
 
+  function venueRow(venue) {
+    return {
+      key: "venue-" + venue.title,
+      title: venue.title,
+      year: null,
+      description: venue.description,
+      tags: venue.tags || [],
+      link: venue.link,
+      date: null,
+      place: null,
+      timezone: null,
+      kiise: venue.kiise,
+      bk21_if: venue.bk21_if,
+      core: venue.core,
+      comment: null,
+      abstractDeadline: null,
+      deadline: null,
+      parsed: null,
+      cycleIndex: 0,
+      cycleCount: 1,
+      placeholder: true,
+      note: venue.tracked
+        ? "다음 회차 일정이 아직 공지되지 않았습니다."
+        : "CCF Deadlines에 등록되지 않은 학회입니다.",
+    };
+  }
+
   function byDeadline(a, b) {
     if (!a.parsed && !b.parsed) {
       return 0;
@@ -178,11 +205,13 @@
   }
 
   function cardHtml(row) {
-    var title = escapeHtml(row.title) + " " + escapeHtml(row.year || "");
+    var title = escapeHtml(row.title) + (row.year ? " " + escapeHtml(row.year) : "");
     var heading = row.link
       ? '<a href="' + escapeHtml(row.link) + '" target="_blank" rel="noopener">' + title + "</a>"
       : title;
-    var where = [row.date, row.place].filter(Boolean).join(" / ");
+    var where = row.placeholder
+      ? row.note
+      : [row.date, row.place].filter(Boolean).join(" / ");
     var cycle =
       row.cycleCount > 1
         ? "Deadline (" + (row.cycleIndex + 1) + " / " + row.cycleCount + ")"
@@ -201,7 +230,9 @@
     }
 
     return (
-      '<article class="conf-card" data-tags="' +
+      '<article class="conf-card' +
+      (row.placeholder ? " is-tbd" : "") +
+      '" data-tags="' +
       escapeHtml(row.tags.join(",")) +
       '">' +
       '<div class="conf-card-main">' +
@@ -242,6 +273,7 @@
     var now = Date.now();
     var upcoming = [];
     var past = [];
+    var listed = {};
 
     state.rows.forEach(function (row) {
       if (!matchesFilter(row, state.filter)) {
@@ -249,17 +281,31 @@
       }
       if (!row.parsed) {
         upcoming.push(row);
+        listed[row.title] = true;
         return;
       }
       var delta = row.parsed.getTime() - now;
       if (delta >= 0) {
         upcoming.push(row);
+        listed[row.title] = true;
       } else if (-delta <= PAST_WINDOW_MS) {
         past.push(row);
       }
     });
 
     upcoming.sort(byDeadline);
+
+    // Venues with no upcoming deadline still belong on the list, as TBD.
+    upcoming = upcoming.concat(
+      (state.venues || [])
+        .filter(function (venue) {
+          return matchesFilter(venue, state.filter) && !listed[venue.title];
+        })
+        .map(venueRow)
+        .sort(function (a, b) {
+          return a.title.localeCompare(b.title);
+        })
+    );
     past.sort(function (a, b) {
       return byDeadline(b, a);
     });
@@ -350,6 +396,7 @@
   var state = {
     filter: "ALL",
     rows: flatten(data.editions || []),
+    venues: data.venues || [],
   };
 
   var updatedEl = document.getElementById("conf-updated");
