@@ -195,6 +195,13 @@ img {
     font-weight: 400;
 }
 
+.listrecent h4.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .featured-box-img-cover {
     object-fit: cover;
     width: 100%;
